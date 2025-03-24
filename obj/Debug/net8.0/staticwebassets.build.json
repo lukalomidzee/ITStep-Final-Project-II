@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Cf1/A6su2xMMAdGjtSh+pq4tNM85doqLfQrCLeQ5Atk=",
+  "Hash": "Mktb3P7CWAqyXCAkHNm+pKvfliTM437Tpi6dFr0ubKs=",
   "Source": "CarRentalApplication",
   "BasePath": "_content/CarRentalApplication",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\login.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "img/login.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\login.jpg"
     },
     {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\js\\site.js",

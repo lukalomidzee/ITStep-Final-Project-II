@@ -1,5 +1,4 @@
-﻿using CarRentalApplication.Models.DTOs;
-using CarRentalApplication.Models.Entities.Users;
+﻿using CarRentalApplication.Models.Entities.Users;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarRentalApplication.Models.Entities.Cars
@@ -39,7 +38,7 @@ namespace CarRentalApplication.Models.Entities.Cars
         public required string Image { get; set; }
 
         // User properties ----------------------------
-        public required int CreatorUserId { get; set; }
+        public required string CreatorUserId { get; set; }
         public required User CreatorUser { get; set; }
 
         [MinLength(9), MaxLength(9)]

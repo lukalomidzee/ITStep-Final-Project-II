@@ -1,12 +1,15 @@
 ﻿using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.Entities.Roles;
 using CarRentalApplication.Models.Entities.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication.Models
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
+        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -15,6 +18,9 @@ namespace CarRentalApplication.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Car>()
                 .HasOne(c => c.CreatorUser)
                 .WithMany(u => u.PostedCar)

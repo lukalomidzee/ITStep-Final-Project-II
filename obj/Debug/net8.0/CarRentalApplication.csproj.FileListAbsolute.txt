@@ -150,3 +150,4 @@ D:\ITStep\II Semester\Final Project\CarRentalApplication\obj\Debug\net8.0\refint
 D:\ITStep\II Semester\Final Project\CarRentalApplication\obj\Debug\net8.0\CarRentalApplication.pdb
 D:\ITStep\II Semester\Final Project\CarRentalApplication\obj\Debug\net8.0\CarRentalApplication.genruntimeconfig.cache
 D:\ITStep\II Semester\Final Project\CarRentalApplication\obj\Debug\net8.0\ref\CarRentalApplication.dll
+D:\ITStep\II Semester\Final Project\CarRentalApplication\obj\Debug\net8.0\CarRentalApplication.sourcelink.json

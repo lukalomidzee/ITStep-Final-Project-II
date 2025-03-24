@@ -8,6 +8,20 @@ html {
   }
 }
 
+@media screen and (max-width: 768px) {
+    .form-div {
+      flex-direction: column;
+    }
+
+    .form-div > form {
+      width: 100%;
+    }
+
+    .img-div {
+        display: none;
+    }
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -19,4 +33,48 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.header {
+    /*background-color: #102A43 !important;*/
+    background: linear-gradient(135deg, #102A43, #0077B6);
+}
+
+.header-text {
+    color: #DFF6FF !important;
+    /*text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);*/
+}
+
+.form-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form-div > form {
+    width: 30%;
+}
+
+.img-div > img {
+    width: 100%;
+}
+
+.img-div {
+    width: 50%;
+}
+
+form.form-control {
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.btn-primary {
+    background-color: #0077B6 !important;
+    border-color: #0077B6 !important;
 }

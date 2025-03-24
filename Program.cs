@@ -1,4 +1,8 @@
+using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
+using CarRentalApplication.Models.Entities.Users;
+using CarRentalApplication.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication
@@ -16,6 +20,10 @@ namespace CarRentalApplication
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             var app = builder.Build();
 
