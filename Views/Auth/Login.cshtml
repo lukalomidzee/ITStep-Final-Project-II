@@ -14,7 +14,7 @@
     <div class="img-div">
         <img src="/img/login.jpg" alt="login-img" />
     </div>
-    <form id="login-form" class="form form-control" asp-action="Login" method="post">
+    <form id="login-form" class="form form-control" asp-controller="Auth" asp-action="Login" method="post">
         <div class="form-group form-field">
             <label>Phone number</label>
             <br />
@@ -31,7 +31,10 @@
 
         <br />
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="login-form-buttons">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="nav-link" asp-controller="Auth" asp-action="Register">Register</a>
+        </div>
     </form>
 </div>
 

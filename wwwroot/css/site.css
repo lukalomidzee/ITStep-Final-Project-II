@@ -3,22 +3,32 @@ html {
 }
 
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
-  }
+    }
+
+    .form-div > form {
+        width: 30%;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .form-div {
       flex-direction: column;
+      width: 60%;
     }
 
     .form-div > form {
       width: 100%;
+      align-items: center !important;
     }
 
     .img-div {
         display: none;
+    }
+
+    .form-field {
+        width: 50% !important;
     }
 }
 
@@ -53,10 +63,6 @@ body {
     justify-content: space-evenly;
 }
 
-.form-div > form {
-    width: 30%;
-}
-
 .img-div > img {
     width: 100%;
 }
@@ -72,9 +78,25 @@ form.form-control {
     align-items: flex-start;
     justify-content: space-between;
     height: 50%;
+    gap: 0.5rem;
 }
 
 .btn-primary {
     background-color: #0077B6 !important;
     border-color: #0077B6 !important;
+}
+
+.field-validation-valid {
+    height: 24px;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.login-form-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
