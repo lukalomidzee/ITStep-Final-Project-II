@@ -58,7 +58,7 @@ namespace CarRentalApplication.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            TempData["Error"] = "Something login attempt";
+            TempData["Error"] = "Invalid login attempt";
             return View();
         }
     }

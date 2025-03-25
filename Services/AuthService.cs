@@ -8,10 +8,10 @@ namespace CarRentalApplication.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         
-        public AuthService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

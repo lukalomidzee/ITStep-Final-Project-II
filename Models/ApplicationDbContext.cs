@@ -9,17 +9,12 @@ namespace CarRentalApplication.Models
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Car> Cars { get; set; }
 
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<Role> Roles { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("Users");
@@ -27,12 +22,14 @@ namespace CarRentalApplication.Models
             modelBuilder.Entity<Car>()
                 .HasOne(c => c.CreatorUser)
                 .WithMany(u => u.PostedCar)
-                .HasForeignKey(c => c.CreatorUserId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(c => c.CreatorUserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Car>()
                 .HasMany(c => c.UserWhoRented)
                 .WithMany(u => u.RentedCar)
                 .UsingEntity(j => j.ToTable("CarRentals"));
         }
+
     }
 }
