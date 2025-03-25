@@ -22,6 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark header-text" asp-area="" asp-controller="Home" asp-action="Introduction">Introduction</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark header-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
                     </ul>
                     @* <ul>
                         <li class="nav-item">
@@ -37,8 +40,13 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            @* <li class="nav-item">
                                 <span class="nav-link header-text">Hello, @User.Identity.Name!</span>
+                            </li> *@
+                            <li class="nav-item">
+                                <form asp-controller="Auth" asp-action="Car" method="Add">
+                                    <button type="submit" class="btn btn-link nav-link header-text">+Add car</button>
+                                </form>
                             </li>
                             <li class="nav-item">
                                 <form asp-controller="Auth" asp-action="Logout" method="post">
@@ -49,7 +57,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark header-text" asp-controller="Auth" asp-action="Login">Log In</a>
+                                <a class="nav-link btn btn-blue" asp-controller="Auth" asp-action="Login">Log In</a>
                             </li>
                         }
                     </ul>

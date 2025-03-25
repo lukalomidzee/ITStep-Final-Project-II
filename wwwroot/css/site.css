@@ -47,11 +47,13 @@ body {
 
 .header {
     /*background-color: #102A43 !important;*/
-    background: linear-gradient(135deg, #102A43, #0077B6);
+    /*background: linear-gradient(135deg, #102A43, #0077B6);*/
+    background-color: #AAA4A4;
+    border-bottom: 1px solid #102A43;
 }
 
 .header-text {
-    color: #DFF6FF !important;
+    color: #102A43 !important;
     /*text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);*/
 }
 
@@ -100,4 +102,28 @@ form.form-control {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.btn-blue {
+    background-color: #0077B6;
+    color: white !important;
+}
+
+.btn-blue:hover {
+    background-color: #016296;
+}
+
+#home-main {
+    margin-top: 8rem;
+    width: 80%;
+    align-self: start;
+}
+
+.main-heading {
+    font-family: Roboto, sans-serif;
+    font-size: 6rem;
+    font-weight: 700;
+    color: #0077B6;
+    text-align: start;
+    text-transform: uppercase;
 }

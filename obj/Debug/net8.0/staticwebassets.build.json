@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yM1kXq19Dr0Pnlqpej1/C5zeLrpEtuK/gxkjsASyAWw=",
+  "Hash": "7a4rG/kZ3KU1ak8AJUxiz1fvC9l0OtOWTWXsUz6FAV4=",
   "Source": "CarRentalApplication",
   "BasePath": "_content/CarRentalApplication",
   "Mode": "Default",
@@ -112,12 +112,12 @@
       "OriginalItemSpec": "wwwroot\\img\\login.jpg"
     },
     {
-      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\register-background.jpg",
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\register.jpg",
       "SourceId": "CarRentalApplication",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
       "BasePath": "_content/CarRentalApplication",
-      "RelativePath": "img/register-background.jpg",
+      "RelativePath": "img/register.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -128,7 +128,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\register-background.jpg"
+      "OriginalItemSpec": "wwwroot\\img\\register.jpg"
     },
     {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\js\\site.js",
