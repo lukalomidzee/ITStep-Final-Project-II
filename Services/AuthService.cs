@@ -37,6 +37,8 @@ namespace CarRentalApplication.Services
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
             };
+
+            //await _userManager.AddToRoleAsync(user, "user");
             return await _userManager.CreateAsync(user, model.Password);
         }
     }

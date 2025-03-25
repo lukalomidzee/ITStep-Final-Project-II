@@ -8,6 +8,6 @@ namespace CarRentalApplication.Models.Entities.Roles
 
         public required string Name { get; set; }
 
-        public List<User>? Users { get; set; }
+        public List<User> Users { get; set; } = new List<User>();
     }
 }

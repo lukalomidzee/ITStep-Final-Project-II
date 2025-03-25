@@ -1,6 +1,7 @@
 ﻿using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.Entities.Roles;
 using CarRentalApplication.Models.Entities.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,8 @@ namespace CarRentalApplication.Models
         {
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().ToTable("Users");
 
             modelBuilder.Entity<Car>()
                 .HasOne(c => c.CreatorUser)

@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\img\\login.jpg"
     },
     {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\register-background.jpg",
+      "PackagePath": "staticwebassets\\img\\register-background.jpg"
+    },
+    {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
