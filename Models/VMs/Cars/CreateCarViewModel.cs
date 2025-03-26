@@ -1,13 +1,11 @@
 ﻿using CarRentalApplication.Models.Entities.Users;
 using System.ComponentModel.DataAnnotations;
 
-namespace CarRentalApplication.Models.Entities.Cars
+namespace CarRentalApplication.Models.VMs.Cars
 {
-    public class Car
+    public class CreateCarViewModel
     {
-        public int Id { get; set; }
-
-        // Car properties -----------------------------
+            // Car properties -----------------------------
         public required string Brand { get; set; }
 
         public required string Model { get; set; }
@@ -36,15 +34,6 @@ namespace CarRentalApplication.Models.Entities.Cars
         public required string Price { get; set; }
 
         public required string Image { get; set; }
-
-        // User properties ----------------------------
-        public required string CreatorUserId { get; set; }
-        public User CreatorUser { get; set; }
-
-        [MinLength(9), MaxLength(9)]
-        public required string CreatorPhoneNummber { get; set; }
-
-        public List<User> UserWhoRented { get; set; } = new List<User>();
 
     }
 }
