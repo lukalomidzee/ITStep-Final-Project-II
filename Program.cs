@@ -24,6 +24,8 @@ namespace CarRentalApplication
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ICarsService, CarsService>();
+
 
             var app = builder.Build();
 
@@ -39,6 +41,8 @@ namespace CarRentalApplication
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -5,35 +5,47 @@ namespace CarRentalApplication.Models.VMs.Cars
 {
     public class CreateCarViewModel
     {
-            // Car properties -----------------------------
-        public required string Brand { get; set; }
+        // Car properties -----------------------------
 
-        public required string Model { get; set; }
+        [Required]
+        public string Brand { get; set; }
 
+        [Required]
+        public string Model { get; set; }
+
+        [Required]
         [Range(1900, 2025)]
-        public required int Year { get; set; }
+        public int Year { get; set; }
 
-        public required string Color { get; set; }
+        [Required]
+        public string Color { get; set; }
 
-        public required string Engine { get; set; }
+        [Required]
+        public string Engine { get; set; }
 
-        public required string Gearbox { get; set; }
+        [Required]
+        public string Gearbox { get; set; }
 
-        public required string FuelCapacity { get; set; }
+        [Required]
+        public string FuelCapacity { get; set; }
 
+        [Required]
         [Range(2, 7)]
-        public required int Capacity { get; set; }
+        public int Capacity { get; set; }
 
-        public required string City { get; set; }
+        [Required]
+        public string City { get; set; }
 
-        public string? Latitude { get; set; }
+        public string? Latitude { get; set; } = default;
 
-        public string? Longitude { get; set; }
+        public string? Longitude { get; set; } = default;
 
         // Price and Image
-        public required string Price { get; set; }
+        [Required]
+        public string Price { get; set; }
 
-        public required string Image { get; set; }
+        [Required]
+        public string Image { get; set; }
 
     }
 }

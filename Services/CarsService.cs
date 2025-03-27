@@ -2,6 +2,7 @@
 using CarRentalApplication.Models;
 using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.VMs.Cars;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication.Services
 {
@@ -45,6 +46,28 @@ namespace CarRentalApplication.Services
                 return false;
             }
             
+        }
+
+        public async Task<bool> DeleteCar(int carId)
+        {
+            Car car = await _context.Cars.FirstOrDefaultAsync(c => c.Id == carId);
+
+            if (car == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                _context.Cars.Remove(car);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }

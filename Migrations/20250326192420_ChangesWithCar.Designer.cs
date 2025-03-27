@@ -4,6 +4,7 @@ using CarRentalApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250326192420_ChangesWithCar")]
+    partial class ChangesWithCar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,23 +24,6 @@ namespace CarRentalApplication.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CarRentalApplication.Models.Entities.Cars.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Brands");
-                });
 
             modelBuilder.Entity("CarRentalApplication.Models.Entities.Cars.Car", b =>
                 {
@@ -109,28 +95,6 @@ namespace CarRentalApplication.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.ToTable("Cars");
-                });
-
-            modelBuilder.Entity("CarRentalApplication.Models.Entities.Cars.Model", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.ToTable("Models");
                 });
 
             modelBuilder.Entity("CarRentalApplication.Models.Entities.Users.User", b =>
@@ -368,17 +332,6 @@ namespace CarRentalApplication.Migrations
                     b.Navigation("CreatorUser");
                 });
 
-            modelBuilder.Entity("CarRentalApplication.Models.Entities.Cars.Model", b =>
-                {
-                    b.HasOne("CarRentalApplication.Models.Entities.Cars.Brand", "Brand")
-                        .WithMany("Models")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
             modelBuilder.Entity("CarUser", b =>
                 {
                     b.HasOne("CarRentalApplication.Models.Entities.Cars.Car", null)
@@ -443,11 +396,6 @@ namespace CarRentalApplication.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CarRentalApplication.Models.Entities.Cars.Brand", b =>
-                {
-                    b.Navigation("Models");
                 });
 
             modelBuilder.Entity("CarRentalApplication.Models.Entities.Users.User", b =>
