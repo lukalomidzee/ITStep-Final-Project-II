@@ -1,0 +1,51 @@
+﻿@model CarRentalApplication.Models.Entities.Cars.Brand
+
+@{
+    ViewData["Title"] = "Brand List";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<h1>Brand Management</h1>
+
+<div>
+    <form asp-asp-controller="Brand" asp-action="Create" method="post">
+        <div class="input-group mb-3">
+            <input asp-for="Name" name="brandName" type="text" class="form-control" placeholder="Create brand" >
+            <button class="btn btn-blue" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+@* <a asp-action="Create" class="btn btn-success">Create New Brand</a> *@
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var brand in ViewBag.Brands)
+        {
+            <tr>
+                <td>@brand.Id</td>
+                <td>@brand.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-warning">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@brand.Id" method="POST" class="btn btn-danger" style="display:inline-block; padding: 0;">
+
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
