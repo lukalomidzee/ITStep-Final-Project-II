@@ -1,0 +1,30 @@
+﻿@model CarRentalApplication.Models.Entities.Cars.Model
+
+@{
+    ViewData["Title"] = "Edit Model";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<h1>Edit Model - @ViewBag.Model.Data.Name</h1>
+<br />
+<div>
+    <form asp-asp-controller="Brand" asp-action="EditModel" asp-route-id="@ViewBag.Model.Data.Id" method="post">
+        <div class="input-group mb-3">
+            <input asp-for="Name" name="newName" type="text" class="form-control" placeholder="Edit model name" value="@ViewBag.Model.Data.Name">
+            <button class="btn btn-blue" type="submit">Edit</button>
+        </div>
+    </form>
+</div>

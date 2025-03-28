@@ -1,6 +1,7 @@
 ﻿using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
 using CarRentalApplication.Models.Entities.Cars;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication.Services
@@ -106,6 +107,8 @@ namespace CarRentalApplication.Services
 
         #region Model
 
+        //public async Task<ServiceResponse<List<Model>>> GetAllModels
+
         public async Task<ServiceResponse<bool>> AddModel(int brandId, string modelName)
         {
             var response = new ServiceResponse<bool>();
@@ -150,25 +153,51 @@ namespace CarRentalApplication.Services
             return response;
         }
 
-        public Task<ServiceResponse<bool>> DeleteModel(int modelId)
+        public async Task<ServiceResponse<bool>> DeleteModel(int modelId)
         {
-            throw new NotImplementedException();
+            var model = await _context.Models.FirstOrDefaultAsync(m => m.Id == modelId);
+
+            if (model == null)
+            {
+                return new ServiceResponse<bool> { Success = false, Message = "Model not found" };
+            }
+
+            try
+            {
+                _context.Models.Remove(model);
+                await _context.SaveChangesAsync();
+                return new ServiceResponse<bool> { Data = true, Success = true, Message = "Model deleted succesfully" };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<bool> { Success = false, Message = "Couldn't delete model" };
+            }
         }
 
-
-
-        public Task<ServiceResponse<bool>> EditModelName(int modelId, string newName)
+        public async Task<ServiceResponse<bool>> EditModelName(int modelId, string newName)
         {
-            throw new NotImplementedException();
+            var model = await _context.Models.FirstOrDefaultAsync(m => m.Id == modelId);
+
+            if (model == null)
+            {
+                return new ServiceResponse<bool> { Success = false, Message = "Model not found" };
+            }
+
+            model.Name = newName;
+            await _context.SaveChangesAsync();
+            return new ServiceResponse<bool> { Success = true, Message = "Model name updated" };
         }
 
-
-
-
-
-        public Task<ServiceResponse<Model>> GetModelById(int modelId)
+        public async Task<ServiceResponse<Model>> GetModelById(int modelId)
         {
-            throw new NotImplementedException();
+            Model model = await _context.Models.FirstOrDefaultAsync(m => m.Id == modelId);
+
+            if (model == null)
+            {
+                return new ServiceResponse<Model> { Success = false, Message = "Model not found" };
+            }
+
+            return new ServiceResponse<Model> { Data = model, Success = true, Message = "Model found" };
         }
 
 

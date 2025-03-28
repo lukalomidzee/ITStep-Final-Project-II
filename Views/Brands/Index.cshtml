@@ -11,6 +11,13 @@
     </div>
 }
 
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
 <h1>Brand Management</h1>
 
 <div>

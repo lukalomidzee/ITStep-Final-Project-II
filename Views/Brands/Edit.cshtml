@@ -19,6 +19,7 @@
 }
 
 <h1>Edit Brand</h1>
+<div style="display: inline-block">Something</div>
 <br />
 <div>
     <form asp-asp-controller="Brand" asp-action="Edit" method="post">
@@ -57,7 +58,7 @@
                 <td>@brandModel.Id</td>
                 <td>@brandModel.Name</td>
                 <td>
-                    <a asp-action="EditModel" asp-route-id="@brandModel.Id" class="btn btn-warning">Edit</a>
+                    <a asp-controller="Brands" asp-action="EditModel" asp-route-id="@brandModel.Id" class="btn btn-warning">Edit</a>
                     <form asp-action="DeleteModel" asp-route-id="@brandModel.Id" method="POST" class="btn btn-danger" style="display:inline-block; padding: 0;">
 
                         <button type="submit" class="btn btn-danger">Delete</button>

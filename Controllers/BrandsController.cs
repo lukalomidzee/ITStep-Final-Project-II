@@ -112,5 +112,65 @@ namespace CarRentalApplication.Controllers
             }
             return RedirectToAction("Edit", new { id = brandId });
         }
+
+        [HttpGet("Brands/EditModel/{modelId}")]
+        public async Task<IActionResult> EditModel(int modelId)
+        {
+            var model = await _brandsService.GetModelById(modelId);
+
+            if (model.Data == null)
+            {
+                TempData["Error"] = "Model not found";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Model = model;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditModel(int id, string newName)
+        {
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                TempData["Error"] = "Model name cannot be empty";
+                return RedirectToAction("EditModel", new { id });
+            }
+
+            //var model = await _context.Models.FirstOrDefaultAsync(m => m.Id == id);
+
+            var model = await _brandsService.GetModelById(id);
+
+            if (model == null)
+            {
+                TempData["Error"] = "Model not found";
+                return RedirectToAction("Index");
+            }
+
+            //model..Name = newName;
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Model name successfully changed!";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteModel(int id)
+        {
+            var response = await _brandsService.DeleteModel(id);
+            
+            if (response != null)
+            {
+                TempData["Success"] = "Model successfully deleted!";
+            }
+            else
+            {
+                TempData["Error"] = "Model not found";
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
