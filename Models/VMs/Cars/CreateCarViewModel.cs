@@ -31,7 +31,7 @@ namespace CarRentalApplication.Models.VMs.Cars
 
         [Required]
         [Range(2, 7)]
-        public int Capacity { get; set; }
+        public int Seats { get; set; }
 
         [Required]
         public string City { get; set; }

@@ -26,6 +26,7 @@ namespace CarRentalApplication
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICarsService, CarsService>();
             builder.Services.AddScoped<IBrandsService, BrandsService>();
+            builder.Services.AddScoped<IFormsDictionaryService, FormsDictionaryService>();
 
 
             var app = builder.Build();

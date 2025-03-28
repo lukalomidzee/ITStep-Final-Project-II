@@ -10,15 +10,11 @@ namespace CarRentalApplication.Controllers
 {
     public class CarsController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly ICarsService _carsService;
-        private readonly UserManager<User> _userManager;
 
-        public CarsController(ICarsService carsService, ApplicationDbContext context, UserManager<User> userManager)
+        public CarsController(ICarsService carsService)
         {
-            _context = context;
             _carsService = carsService;
-            _userManager = userManager;
         }
 
         public IActionResult Index()

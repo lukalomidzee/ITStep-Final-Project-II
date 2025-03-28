@@ -25,7 +25,7 @@ namespace CarRentalApplication.Services
                 Engine = model.Engine,
                 Gearbox = model.Gearbox,
                 FuelCapacity = model.FuelCapacity,
-                Capacity = model.Capacity,
+                Seats = model.Seats,
                 City = model.City,
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,

@@ -24,7 +24,7 @@ namespace CarRentalApplication.Models.Entities.Cars
         public required string FuelCapacity { get; set; }
 
         [Range(2, 7)]
-        public required int Capacity { get; set; }
+        public required int Seats { get; set; }
 
         public required string City { get; set; }
 

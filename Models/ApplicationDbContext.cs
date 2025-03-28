@@ -1,4 +1,5 @@
 ﻿using CarRentalApplication.Models.Entities.Cars;
+using CarRentalApplication.Models.Entities.Dictionary;
 using CarRentalApplication.Models.Entities.Roles;
 using CarRentalApplication.Models.Entities.Users;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +16,21 @@ namespace CarRentalApplication.Models
 
         public DbSet<Brand> Brands { get; set; }
 
-        public DbSet<Model> Models { get; set; }    
+        public DbSet<Model> Models { get; set; }  
+
+        public DbSet<Cities> Cities { get; set; }
+        
+        public DbSet<Colors> Colors { get; set; }
+
+        public DbSet<Engines> Engines { get; set; }
+
+        public DbSet<FuelCapacities> FuelCapacities { get; set; }
+
+        public DbSet<Gearboxes> Gearboxes { get; set; }
+
+        public DbSet<Seats> Seats { get; set; }
+
+        public DbSet<Years> Years { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -142,13 +142,13 @@ namespace CarRentalApplication.Controllers
 
             var model = await _brandsService.GetModelById(id);
 
-            if (model == null)
+            if (model.Data == null)
             {
                 TempData["Error"] = "Model not found";
                 return RedirectToAction("Index");
             }
 
-            //model..Name = newName;
+            model.Data.Name = newName;
             await _context.SaveChangesAsync();
 
             TempData["Success"] = "Model name successfully changed!";
