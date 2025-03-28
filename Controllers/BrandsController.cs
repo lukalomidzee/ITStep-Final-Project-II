@@ -90,7 +90,7 @@ namespace CarRentalApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost("Brands/Edit/{brandId}")]
+        [HttpPost("Brands/AddModel/{brandId}")]
         public async Task<IActionResult> AddModel(int brandId, string modelName)
         {
             if (string.IsNullOrWhiteSpace(modelName))
@@ -105,8 +105,12 @@ namespace CarRentalApplication.Controllers
             {
                 TempData["Error"] = response.Message;
             }
+            else
+            {
+                TempData["Success"] = "Model successfully added!";
 
-            return RedirectToAction("Edit", new { brandId });
+            }
+            return RedirectToAction("Edit", new { id = brandId });
         }
     }
 }

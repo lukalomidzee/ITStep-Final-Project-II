@@ -11,6 +11,13 @@
     </div>
 }
 
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
 <h1>Edit Brand</h1>
 <br />
 <div>
@@ -27,10 +34,9 @@
 <h3>Models</h3>
 
 <div>
-    <form asp-asp-controller="Brand" asp-action="AddModel" method="post">
+    <form asp-asp-controller="Brand" asp-action="AddModel" asp-route-id="@ViewBag.Brand.Id" method="post">
         <div class="input-group mb-3">
             <input asp-for="Name" name="modelName" type="text" class="form-control" placeholder="Add model">
-            <input asp-for="Id" name="brandId" type="text" value="@ViewBag.Brand.Id" hidden/>
             <button class="btn btn-blue" type="submit">Add</button>
         </div>
     </form>
