@@ -14,50 +14,7 @@ namespace CarRentalApplication.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<bool>> AddModel(int brandId, string modelName)
-        {
-            var response = new ServiceResponse<bool>();
-
-            try
-            {
-                var brand = await GetBrandById(brandId);
-
-                if (brand.Data == null)
-                {
-                    response.Success = false;
-                    response.Message = "Brand not found.";
-                    return response;
-                }
-
-                if (brand.Data.Models.Any(m => m.Name == modelName))
-                {
-                    response.Success = false;
-                    response.Message = "Model already exists.";
-                    return response;
-                }
-
-                var newModel = new Model
-                {
-                    Name = modelName,
-                    BrandId = brandId
-                };
-
-                await _context.Models.AddAsync(newModel);
-                await _context.SaveChangesAsync();
-
-                response.Data = true;
-                response.Success = true;
-                response.Message = "Model added successfully.";
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.Message = $"Error: {ex.Message}";
-            }
-
-            return response;
-        }
-
+        #region Brand
         public async Task<ServiceResponse<int>> CreateBrand(string brandName)
         {
             string name = brandName.Trim();
@@ -72,7 +29,7 @@ namespace CarRentalApplication.Services
             if (brandExists != null)
             {
                 return new ServiceResponse<int> { Success = false, Message = "Brand already exists" };
-            }   
+            }
 
             try
             {
@@ -143,5 +100,79 @@ namespace CarRentalApplication.Services
 
             return new ServiceResponse<Brand> { Data = brand, Success = true, Message = "Brand found" };
         }
+
+        #endregion
+
+
+        #region Model
+
+        public async Task<ServiceResponse<bool>> AddModel(int brandId, string modelName)
+        {
+            var response = new ServiceResponse<bool>();
+
+            try
+            {
+                var brand = await GetBrandById(brandId);
+
+                if (brand.Data == null)
+                {
+                    response.Success = false;
+                    response.Message = "Brand not found.";
+                    return response;
+                }
+
+                if (brand.Data.Models.Any(m => m.Name == modelName))
+                {
+                    response.Success = false;
+                    response.Message = "Model already exists.";
+                    return response;
+                }
+
+                var newModel = new Model
+                {
+                    Name = modelName,
+                    BrandId = brandId
+                };
+
+                await _context.Models.AddAsync(newModel);
+                await _context.SaveChangesAsync();
+
+                response.Data = true;
+                response.Success = true;
+                response.Message = "Model added successfully.";
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = $"Error: {ex.Message}";
+            }
+
+            return response;
+        }
+
+        public Task<ServiceResponse<bool>> DeleteModel(int modelId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        public Task<ServiceResponse<bool>> EditModelName(int modelId, string newName)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
+        public Task<ServiceResponse<Model>> GetModelById(int modelId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        #endregion
+
     }
 }

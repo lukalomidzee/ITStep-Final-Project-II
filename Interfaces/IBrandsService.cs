@@ -16,5 +16,11 @@ namespace CarRentalApplication.Interfaces
 
         Task<ServiceResponse<bool>> AddModel(int brandId, string modelName);
 
+        Task<ServiceResponse<bool>> DeleteModel(int modelId);
+
+        Task<ServiceResponse<Model>> GetModelById(int modelId);
+
+        Task<ServiceResponse<bool>> EditModelName(int modelId, string newName);
+
     }
 }
