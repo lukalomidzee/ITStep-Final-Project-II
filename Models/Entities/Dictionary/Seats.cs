@@ -1,9 +1,11 @@
-﻿namespace CarRentalApplication.Models.Entities.Dictionary
+﻿using CarRentalApplication.Interfaces;
+
+namespace CarRentalApplication.Models.Entities.Dictionary
 {
-    public class Seats
+    public class Seats : ISelector<int>
     {
         public int Id { get; set; }
 
-        public int NumberOfSeats { get; set; }
+        public int Value { get; set; }
     }
 }

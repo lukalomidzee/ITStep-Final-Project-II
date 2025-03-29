@@ -1,9 +1,11 @@
-﻿namespace CarRentalApplication.Models.Entities.Dictionary
+﻿using CarRentalApplication.Interfaces;
+
+namespace CarRentalApplication.Models.Entities.Dictionary
 {
-    public class Gearboxes
+    public class Gearboxes : ISelector<string>
     {
         public int Id { get; set; }
 
-        public string Gearbox { get; set; }
+        public string Value { get; set; }
     }
 }
