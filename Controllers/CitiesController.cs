@@ -20,7 +20,8 @@ namespace CarRentalApplication.Controllers
                 var response = await _service.UpdateAsync(id, model);
                 if (!response.Success)
                 {
-                    return NotFound();
+                    TempData["Error"] = response.Message;
+                    return RedirectToAction(nameof(Index));
                 }
                 return RedirectToAction(nameof(Index));
             }

@@ -18,7 +18,7 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<T>>> GetAllAsync()
         {
-            var entities = await _dbSet.ToListAsync();
+            var entities = await _dbSet.OrderBy(x => x.Value).ToListAsync();
             if (entities == null)
             {
                 return new ServiceResponse<List<T>> { Success = false, Message = "Not found" };
@@ -53,6 +53,9 @@ namespace CarRentalApplication.Services
             var entity = await _dbSet.FindAsync(id);
             if (entity == null)
                 return new ServiceResponse<bool> { Success = false, Message = "Not found" };
+
+            if (_dbSet.Any(x => x.Value.Equals(newValue)))
+                return new ServiceResponse<bool> { Success = false, Message = "Already exists" };
 
             entity.Value = newValue;
             await _context.SaveChangesAsync();
