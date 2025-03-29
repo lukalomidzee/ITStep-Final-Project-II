@@ -29,8 +29,7 @@ namespace CarRentalApplication
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICarsService, CarsService>();
             builder.Services.AddScoped<IBrandsService, BrandsService>();
-            //builder.Services.AddScoped<IFormsDictionaryService, FormsDictionaryService>();
-            //builder.Services.AddScoped(typeof(GenericSelectorService<,>));
+            builder.Services.AddScoped<ISelectorsService, SelectorsService>();
             builder.Services.AddScoped(typeof(IGenericSelectorService<,>), typeof(GenericSelectorService<,>));
             builder.Services.AddScoped<CitiesService>();
             builder.Services.AddScoped<ColorsService>();

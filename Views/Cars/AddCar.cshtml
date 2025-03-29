@@ -34,50 +34,86 @@
         <div class="form-group form-field">
             <label>Year</label>
             <br />
-            <input asp-for="Year" type="number" class="form-input form-control" />
-            <span asp-validation-for="Year" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select year</option>
+                @foreach (var select in ViewBag.Selectors.Years)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>Color</label>
             <br />
-            <input asp-for="Color" class="form-input form-control" />
-            <span asp-validation-for="Color" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select color</option>
+                @foreach (var select in ViewBag.Selectors.Colors)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>Engine</label>
             <br />
-            <input asp-for="Engine" class="form-input form-control" />
-            <span asp-validation-for="Engine" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select engine</option>
+                @foreach (var select in ViewBag.Selectors.Engines)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>Gearbox</label>
             <br />
-            <input asp-for="Gearbox" class="form-input form-control" />
-            <span asp-validation-for="Gearbox" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select gearbox</option>
+                @foreach (var select in ViewBag.Selectors.Gearboxes)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>Fuel Capacity</label>
             <br />
-            <input asp-for="FuelCapacity" class="form-input form-control" />
-            <span asp-validation-for="FuelCapacity" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select fuel capacity</option>
+                @foreach (var select in ViewBag.Selectors.FuelCapacities)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>Seats</label>
             <br />
-            <input asp-for="Seats" class="form-input form-control" />
-            <span asp-validation-for="Seats" class="text-danger" style="display:block;"></span>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Select seats amount</option>
+                @foreach (var select in ViewBag.Selectors.Seats)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+            </select>
         </div>
 
         <div class="form-group form-field">
             <label>City</label>
             <br />
-            <input asp-for="City" class="form-input form-control" />
-            <span asp-validation-for="City" class="text-danger" style="display:block;"></span>
+            <select asp-for="City" class="form-select" aria-label="Default select example">
+                <option selected disabled>Select city</option>
+                @foreach (var select in ViewBag.Selectors.Cities)
+                {
+                    <option value="@select.Text">@select.Text</option>
+                })
+                <span asp-validation-for="City" class="text-danger" style="display:block;"></span>
+            </select>
         </div>
 
         <div class="form-group form-field">

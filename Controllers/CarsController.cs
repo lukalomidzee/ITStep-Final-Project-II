@@ -11,10 +11,12 @@ namespace CarRentalApplication.Controllers
     public class CarsController : Controller
     {
         private readonly ICarsService _carsService;
+        private readonly ISelectorsService _selectorsService;
 
-        public CarsController(ICarsService carsService)
+        public CarsController(ICarsService carsService, ISelectorsService selectorsService)
         {
             _carsService = carsService;
+            _selectorsService = selectorsService;
         }
 
         public IActionResult Index()
@@ -25,19 +27,25 @@ namespace CarRentalApplication.Controllers
         [HttpGet]
         public async Task<IActionResult> AddCar()
         {
+            var selectorData = await _selectorsService.GetAllSelectors();
+            var selectors = new
+            {
+                Cities = selectorData[0],
+                Colors = selectorData[1],
+                Engines = selectorData[2], 
+                FuelCapacities = selectorData[3], 
+                Gearboxes = selectorData[4], // List of SelectListItem
+                Seats = selectorData[5],    // List of SelectListItem
+                Years = selectorData[6]    // List of SelectListItem
+            };
+
+            ViewBag.Selectors = selectors;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddCarPost([FromForm] CreateCarViewModel carModel)
         {
-            //int year = model.Year;
-            //model.Year = year;
-
-            //int capacity = model.Capacity;
-            //model.Capacity = capacity;
-
-
             var modelState = ModelState;
 
             var form = await Request.ReadFormAsync();
