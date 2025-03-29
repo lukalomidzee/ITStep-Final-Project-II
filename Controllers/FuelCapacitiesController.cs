@@ -11,8 +11,8 @@ namespace CarRentalApplication.Controllers
         protected override string ControllerName => "FuelCapacities";
         protected override string DisplayName => "Egnines";
 
-        [HttpPost("EditConfirmed/{id}")]
-        public async Task<IActionResult> EditConfirmed(int id, int model)
+        [HttpPost("EditFuelCapacities/{id}")]
+        public async Task<IActionResult> EditFuelCapacities(int id, int model)
         {
             if (ModelState.IsValid)
             {

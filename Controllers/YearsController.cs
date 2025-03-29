@@ -11,8 +11,8 @@ namespace CarRentalApplication.Controllers
         protected override string ControllerName => "Years";
         protected override string DisplayName => "Years";
 
-        [HttpPost("EditConfirmed/{id}")]
-        public async Task<IActionResult> EditConfirmed(int id, int model)
+        [HttpPost("EditYears/{id}")]
+        public async Task<IActionResult> EditYears(int id, int model)
         {
             if (ModelState.IsValid)
             {

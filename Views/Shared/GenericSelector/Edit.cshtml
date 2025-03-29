@@ -1,11 +1,41 @@
 ﻿@model CarRentalApplication.Models.VMs.Selectors.SelectorViewModel
 
-<h2>@ViewData["Title"]</h2>
+@{
+    var controllerName = Model.DisplayName;
+    var methodName = string.Empty;
 
+    switch (controllerName)
+    {
+        case "Cities":
+        methodName = "EditCities";
+            break;
+        case "Colors":
+        methodName = "EditColors";
+            break;
+        case "Engines":
+        methodName = "EditEngines";
+            break;
+        case "FuelCapacities":
+        methodName = "EditFuelCapacities";
+            break;
+        case "Gearboxes":
+        methodName = "EditGearboxes";
+            break;
+        case "Seats":
+        methodName = "EditSeats";
+            break;
+        case "Years":
+        methodName = "EditYears";
+            break;
+    }
+}
+
+<h2>@ViewData["Title"]</h2>
+   
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditConfirmed" asp-route-id="@Model.Id" method="post">
+        <form asp-action="@methodName" asp-route-id="@Model.Id" method="post">
             <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

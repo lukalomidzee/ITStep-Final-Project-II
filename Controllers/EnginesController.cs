@@ -11,9 +11,9 @@ namespace CarRentalApplication.Controllers
         protected override string ControllerName => "Engines";
         protected override string DisplayName => "Engines";
 
-        [HttpPost("EditConfirmed/{id}")]
+        [HttpPost("EditEngines/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditConfirmed(int id, float model)
+        public async Task<IActionResult> EditEngines(int id, float model)
         {
             if (ModelState.IsValid)
             {
