@@ -43,17 +43,27 @@ namespace CarRentalApplication.Controllers
                 var result = await _service.CreateAsync(value);
                 if (result.Success == false)
                 {
-                    ViewData["Error"] = result.Message;
+                    TempData["Error"] = result.Message;
                 }
                 else
                 {
-                    ViewData["Success"] = "Created successfully";
+                    TempData["Success"] = "Created successfully";
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(value);
+
+            if (typeof(TValue) == typeof(int) || typeof(TValue) == typeof(float))
+            {
+                TempData["Error"] = "Couldn't create value. Value must be numeric";
+            }
+            else
+            {
+                TempData["Error"] = "Couldn't create value";
+            }
+            return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var response = await _service.GetByIdAsync(id);
@@ -62,31 +72,51 @@ namespace CarRentalApplication.Controllers
                 return NotFound();
             }
 
-            var model = new SelectorViewModel<TValue>
+            var model = new SelectorViewModel
             {
                 Id = response.Data.Id,
                 Value = response.Data.Value,
-                DisplayName = DisplayName
+                DisplayName = DisplayName,
+                ValueType = typeof(TValue).Name
             };
 
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, SelectorViewModel<TValue> model)
-        {
-            if (ModelState.IsValid)
-            {
-                var response = await _service.UpdateAsync(id, model.Value);
-                if (!response.Success)
-                {
-                    return NotFound();
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(model);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, SelectorViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var response = await _service.UpdateAsync(id, model.Value);
+        //        if (!response.Success)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(model);
+        //}
+
+        //[HttpPost("EditConfirmed/{id}")/*, ActionName("Edit")*/]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> EditConfirmed(int id, TValue model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var response = await _service.UpdateAsync(id, model);
+        //        if (!response.Success)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    //if (string.IsNullOrWhiteSpace(model))
+        //    //    TempData["Error"] = "Value couldn't be empty";
+
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         public async Task<IActionResult> Delete(int id)
         {

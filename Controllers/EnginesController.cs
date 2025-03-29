@@ -9,6 +9,25 @@ namespace CarRentalApplication.Controllers
         public EnginesController(EnginesService service) : base(service) { }
 
         protected override string ControllerName => "Engines";
-        protected override string DisplayName => "Engine Size";
+        protected override string DisplayName => "Engines";
+
+        [HttpPost("EditConfirmed/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed(int id, float model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _service.UpdateAsync(id, model);
+                if (!response.Success)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            if (model <= 0)
+                TempData["Error"] = "Value couldn't be lower than 0.1";
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

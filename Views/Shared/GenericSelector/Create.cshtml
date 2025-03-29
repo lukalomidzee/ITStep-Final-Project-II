@@ -2,20 +2,6 @@
 
 <h2>@ViewData["Title"]</h2>
 
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["Error"]
-    </div>
-}
-
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Success"]
-    </div>
-}
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -26,6 +12,7 @@
                 <input name="value" class="form-control" />
                 <span class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

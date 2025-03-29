@@ -38,6 +38,10 @@ namespace CarRentalApplication.Services
         {
             var entity = new T { Value = value };
 
+
+            if (_dbSet.Any(x => x.Value.Equals(value)))
+                return new ServiceResponse<int> { Success = false, Message = "Already exists" };
+
             _dbSet.Add(entity);
             await _context.SaveChangesAsync();
 
