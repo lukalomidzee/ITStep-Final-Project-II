@@ -51,12 +51,25 @@
                                     <button type="submit" class="btn btn-link nav-link header-text">+Add car</button>
                                 </form>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link header-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dictionary
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a>
+                                    <a class="dropdown-item" asp-controller="Colors" asp-action="Index">Colors</a>
+                                    <a class="dropdown-item" asp-controller="Engines" asp-action="Index">Engines</a>
+                                    <a class="dropdown-item" asp-controller="FuelCapacities" asp-action="Index">Fuel Capacities</a>
+                                    <a class="dropdown-item" asp-controller="Gearboxes" asp-action="Index">Gearboxes</a>
+                                    <a class="dropdown-item" asp-controller="Seats" asp-action="Index">Seats</a>
+                                    <a class="dropdown-item" asp-controller="Years" asp-action="Index">Years</a>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <form asp-controller="Auth" asp-action="Logout" method="post">
                                     <button type="submit" class="btn btn-link nav-link header-text">Log Out</button>
                                 </form>
                             </li>
-
                         }
                         else
                         {
@@ -83,6 +96,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

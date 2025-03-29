@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication.Services
 {
-    public class GenericSelectorService<T, TValue> where T : class, ISelector<TValue>, new()
+    public class GenericSelectorService<T, TValue> : IGenericSelectorService<T, TValue> where T : class, ISelector<TValue>, new()
         /*IGenericSelectorService<T> where T : class*/
     {
         private readonly ApplicationDbContext _context;
@@ -18,7 +18,12 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<T>>> GetAllAsync()
         {
-            return new ServiceResponse<List<T>> { Data = await _dbSet.ToListAsync(), Success = true };
+            var entities = await _dbSet.ToListAsync();
+            if (entities == null)
+            {
+                return new ServiceResponse<List<T>> { Success = false, Message = "Not found" };
+            }
+            return new ServiceResponse<List<T>> { Data = entities, Success = true };
         }
 
         public async Task<ServiceResponse<T>> GetByIdAsync(int id)

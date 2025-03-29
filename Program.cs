@@ -1,9 +1,12 @@
 using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
+using CarRentalApplication.Models.Entities.Dictionary;
 using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Services;
+using CarRentalApplication.Services.Selectors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace CarRentalApplication
 {
@@ -26,7 +29,16 @@ namespace CarRentalApplication
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICarsService, CarsService>();
             builder.Services.AddScoped<IBrandsService, BrandsService>();
-            builder.Services.AddScoped<IFormsDictionaryService, FormsDictionaryService>();
+            //builder.Services.AddScoped<IFormsDictionaryService, FormsDictionaryService>();
+            //builder.Services.AddScoped(typeof(GenericSelectorService<,>));
+            builder.Services.AddScoped(typeof(IGenericSelectorService<,>), typeof(GenericSelectorService<,>));
+            builder.Services.AddScoped<CitiesService>();
+            builder.Services.AddScoped<ColorsService>();
+            builder.Services.AddScoped<EnginesService>();
+            builder.Services.AddScoped<FuelCapacitiesService>();
+            builder.Services.AddScoped<GearboxesService>();
+            builder.Services.AddScoped<SeatsService>();
+            builder.Services.AddScoped<YearsService>();
 
 
             var app = builder.Build();
