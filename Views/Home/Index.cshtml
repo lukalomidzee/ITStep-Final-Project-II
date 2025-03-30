@@ -14,8 +14,8 @@
     <div class="cars-cards-div">
         @if (Model.Count < 1)
         {
-            <div class="alert alert-alert">
-                Car list empty
+            <div class="alert alert-danger" style="width: 100%">
+                Car list is empty!
             </div>
         }
 
@@ -34,7 +34,7 @@
                             @foreach (var image in car.CarImages.Select((img, index) => new { img, index }))
                             {
                                 <div class="carousel-item @(image.index == 0 ? "active" : "")">
-                                    <img src="@image.img.ImagePath" class="d-block w-100 carousel-image" alt="@car.Model" class="carousel-image">
+                                    <img src="@image.img.ImagePath" class="d-block w-100 carousel-image" alt="@car.Model">
                                 </div>
                             }
                         </div>
@@ -47,10 +47,13 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <h3 class="info car-card-info-brand">@car.Brand</h3>
-                    <p class="info car-card-info-model">@car.Model</p>
+                    <h3 class="info car-card-info-brand">@car.Year @car.Brand</h3>
+                    <p class="info car-card-info-model">@car.Model @car.Engine Liter</p>
                     <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
-                    <a class="info car-card-info-link" href="@Url.Action("Details", "Car", new { id = car.Id })" class="btn btn-primary">Details</a>
+                    <div class="card-buttons">
+                        <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Car", new { id = car.Id })">Details</a>
+                    </div>
+
                 </div>
             </div>
         }

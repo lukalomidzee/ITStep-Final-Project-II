@@ -52,5 +52,9 @@ namespace CarRentalApplication.Models.Entities.Cars
 
         public List<User> UserWhoRented { get; set; } = new List<User>();
 
+        //public List<User> UsersWhoLiked { get; set; } = new List<User>();
+
+        public List<UsersCarsLikes> UsersCarsLikes { get; set; } = new List<UsersCarsLikes>();
+
     }
 }

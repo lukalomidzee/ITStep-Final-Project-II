@@ -34,6 +34,8 @@ namespace CarRentalApplication.Models
 
         public DbSet<Years> Years { get; set; }
 
+        public DbSet<UsersCarsLikes> UsersCarsLikes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
