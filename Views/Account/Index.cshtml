@@ -1,4 +1,4 @@
-﻿@model List<CarRentalApplication.Models.Entities.Cars.Car>
+﻿@model CarRentalApplication.Models.Entities.Users.User
 
 @{
     // ViewData["Title"] = $"Car - {Model.Year} {Model.Brand} {Model.Model}";
@@ -19,6 +19,25 @@
     </div>
 }
 
+<div style=" widht: 100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+    <h3 style="margin:0">Your details</h3>
+    <ul>
+        <li>First Name: @Model.FirstName</li>
+        <li>Last Name: @Model.LastName</li>
+        <li>Email: @Model.Email</li>
+        <li>Phone Number: @Model.PhoneNumber</li>
+    </ul>
+</div>
+
+<div style=" widht: 100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+    <h3 style="margin:0">Liked cars</h3>
+    <ul>
+        @Model.UsersCarsLikes
+    </ul>
+</div>
+
+
+@* 
 <div style="display:flex; flex-direction:row; align-items:center; gap: 1rem; margin-bottom: 1rem">
     <h3 style="margin:0">@Model.Year @Model.Brand @Model.Model</h3>
     @if (User.Identity.IsAuthenticated)
@@ -119,20 +138,7 @@
         </div>
     </div>
 </div>
-<div id="carMap" style="height: 300px; width: 100%;"></div>
-
-<script>
-    var carLocation = [@Model.Latitude, @Model.Longitude];
-
-    var map = L.map('carMap').setView(carLocation, 12);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    L.marker(carLocation).addTo(map);
-</script>
-
+<div id="carMap" style="height: 300px; width: 100%;"></div> *@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

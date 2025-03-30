@@ -2,6 +2,8 @@
 using CarRentalApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarRentalApplication.Controllers
 {
@@ -17,9 +19,27 @@ namespace CarRentalApplication.Controllers
             _carsService = carsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var user = await _context.Users
+                .Include(u => u.PostedCar)
+                .Include(u => u.RentedCar)
+                .Include(u => u.UsersCarsLikes)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
     }
 }
