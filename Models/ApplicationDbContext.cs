@@ -14,6 +14,8 @@ namespace CarRentalApplication.Models
 
         public DbSet<Car> Cars { get; set; }
 
+        public DbSet<CarImage> CarImages { get; set; }
+
         public DbSet<Brand> Brands { get; set; }
 
         public DbSet<Model> Models { get; set; }  

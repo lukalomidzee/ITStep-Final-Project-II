@@ -1,4 +1,5 @@
-﻿using CarRentalApplication.Models.Entities.Users;
+﻿using CarRentalApplication.Models.Entities.Cars;
+using CarRentalApplication.Models.Entities.Users;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarRentalApplication.Models.VMs.Cars
@@ -45,7 +46,10 @@ namespace CarRentalApplication.Models.VMs.Cars
         public string Price { get; set; }
 
         [Required]
-        public string Image { get; set; }
+        public string ImagePath { get; set; }
+
+        public ICollection<CarImage> CarImages { get; set; } = new List<CarImage>();
+
 
     }
 }

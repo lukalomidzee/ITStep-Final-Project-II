@@ -55,50 +55,65 @@ namespace CarRentalApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCarPost([FromForm] CreateCarViewModel carModel)
+        public async Task<IActionResult> AddCarPost([FromForm] CreateCarViewModel carModel, List<IFormFile> CarImages)
         {
             var modelState = ModelState;
-
-            //var form = await Request.ReadFormAsync();
-            //foreach (var key in form.Keys)
-            //{
-            //    Console.WriteLine($"{key}: {form[key]}");
-            //}
-
-            if (ModelState.IsValid)
+            
+            if (!ModelState.IsValid)
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (userId == null)
-                {
-                    return Unauthorized();
-                }
-
-                var phoneNumber = User.Identity.Name;
-
-                if (phoneNumber == null)
-                {
-                    TempData["Error"] = "Invalid car creation attempt - No phone number found";
-                    return RedirectToAction("AddCar");
-                }
-
-                var result = await _carsService.AddCar(userId, phoneNumber, carModel);
-                if (result.Success)
-                {
-                    TempData["Success"] = result.Message;
-                }
-                else
-                {
-                    TempData["Error"] = result.Message;
-                }
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                TempData["Error"] = string.Join("; ", errors);
                 return RedirectToAction("AddCar");
             }
-            
 
-            //TempData["Error"] = "Invalid car creation attempt";
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-            TempData["Error"] = string.Join("; ", errors);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
 
+            var phoneNumber = User.Identity.Name;
+
+            if (phoneNumber == null)
+            {
+                TempData["Error"] = "Invalid car creation attempt - No phone number found";
+                return RedirectToAction("AddCar");
+            }
+
+            var imagePaths = new List<string>();
+            if (CarImages != null && CarImages.Count > 0)
+            {
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/cars");
+
+                if (!Directory.Exists(uploadPath))
+                    Directory.CreateDirectory(uploadPath);
+
+                foreach (var image in CarImages.Take(3))
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                    var filePath = Path.Combine(uploadPath, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+
+                    imagePaths.Add("/images/cars/" + fileName);
+                }
+            }
+
+            var result = await _carsService.AddCar(userId, phoneNumber, carModel, imagePaths);
+
+            if (result.Success)
+            {
+                TempData["Success"] = result.Message;
+            }
+            else
+            {
+                TempData["Error"] = result.Message;
+            }
             return RedirectToAction("AddCar");
+            
         }
     }
 }

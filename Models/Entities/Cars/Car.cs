@@ -35,7 +35,9 @@ namespace CarRentalApplication.Models.Entities.Cars
         // Price and Image
         public required string Price { get; set; }
 
-        public required string ImagePath { get; set; }
+        public ICollection<CarImage> CarImages { get; set; } = new List<CarImage>();
+
+        public string? ImagePath { get; set; }
 
         // User properties ----------------------------
         public required string CreatorUserId { get; set; }

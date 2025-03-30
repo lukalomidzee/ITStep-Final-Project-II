@@ -7,7 +7,7 @@ namespace CarRentalApplication.Interfaces
 {
     public interface ICarsService
     {
-        Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model);
+        Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model, List<string> imagePaths);
 
         Task<ServiceResponse<bool>> DeleteCar(int carId);
 

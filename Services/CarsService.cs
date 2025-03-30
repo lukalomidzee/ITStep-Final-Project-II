@@ -17,10 +17,15 @@ namespace CarRentalApplication.Services
         }
 
         #region Car CRUD
-        public async Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model)
+        public async Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model, List<string> imagePaths)
         {
             var brandName = await _context.Brands.FirstOrDefaultAsync(b => b.Id == model.Brand);
             var modelName = await _context.Models.FirstOrDefaultAsync(m => m.Id == model.Model);
+
+            if (brandName == null || modelName == null)
+            {
+                return new ServiceResponse<bool> { Data = false, Success = false, Message = "Invalid brand or model selection." };
+            }
 
             Car car = new Car() {    
                 Brand = brandName.Name,
@@ -35,7 +40,7 @@ namespace CarRentalApplication.Services
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,
                 Price = model.Price,
-                ImagePath = model.Image,
+                //ImagePath = imagePaths,
                 CreatorUserId = userId,
                 CreatorPhoneNummber = phoneNumber,
                 LikeCount = 0,
@@ -46,6 +51,18 @@ namespace CarRentalApplication.Services
             {
                 await _context.Cars.AddAsync(car);
                 await _context.SaveChangesAsync();
+                if (imagePaths.Any())
+                {
+                    var carImages = imagePaths.Select(path => new CarImage
+                    {
+                        CarId = car.Id,  // Use the saved car's ID
+                        ImagePath = path
+                    }).ToList();
+
+                    await _context.CarImages.AddRangeAsync(carImages);
+                    await _context.SaveChangesAsync();
+                }
+
                 return new ServiceResponse<bool> { Data = true, Success = true, Message = "Car added successfully" };
             }
             catch (Exception ex)
