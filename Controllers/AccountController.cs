@@ -30,8 +30,8 @@ namespace CarRentalApplication.Controllers
 
             var user = await _context.Users
                 .Include(u => u.PostedCar)
-                .Include(u => u.RentedCar)
-                .Include(u => u.UsersCarsLikes)
+                .Include(u => u.Rentals).ThenInclude(c => c.Car)
+                .Include(u => u.UsersCarsLikes).ThenInclude(ucl => ucl.Car)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)

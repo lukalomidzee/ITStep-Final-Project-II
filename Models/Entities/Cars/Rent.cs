@@ -7,8 +7,10 @@ namespace CarRentalApplication.Models.Entities.Cars
         public int Id { get; set; }
 
         public int CarId { get; set; }
+        public Car Car { get; set; }
 
         public string UserId { get; set; }
+        public User User { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -18,8 +20,6 @@ namespace CarRentalApplication.Models.Entities.Cars
 
         public int Active { get; set; } = 1;
 
-        public Car Car { get; set; }
 
-        public User User { get; set; }
     }
 }

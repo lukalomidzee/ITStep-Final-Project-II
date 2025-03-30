@@ -29,12 +29,70 @@
     </ul>
 </div>
 
-<div style=" widht: 100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
-    <h3 style="margin:0">Liked cars</h3>
-    <ul>
-        @Model.UsersCarsLikes
-    </ul>
+<h3 style="margin:0">Liked cars</h3>
+<div style="widht: 100%; border: 1px solid #016296;padding: 0.5rem; border-radius: 0.5rem; overflow: scroll; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+    <div style="widht: 100%; display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+        @foreach (var car in Model.UsersCarsLikes)
+        {
+            <div class="car-card">
+                <div class="car-card-info">
+                    <h3 class="info car-card-info-brand">@car.Car.Year @car.Car.Brand</h3>
+                    <p class="info car-card-info-model">@car.Car.Model / @car.Car.Engine Liter</p>
+                    <p class="info car-card-info-price">Price: @car.Car.Price GEL/Day</p>
+                    <div class="card-buttons">
+                        @* <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Cars", new { id = car.Id })">Details</a> *@
+                        <a class="info car-card-info-link btn btn-blue" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
+
+<h3 style="margin:0">Posted cars</h3>
+<div style="widht: 100%; border: 1px solid #016296;padding: 0.5rem; border-radius: 0.5rem; overflow: scroll; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+    <div style="widht: 100%; display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+        @foreach (var car in Model.PostedCar)
+        {
+            <div class="car-card">
+                <div class="car-card-info">
+                    <h3 class="info car-card-info-brand">@car.Year @car.Brand</h3>
+                    <p class="info car-card-info-model">@car.Model / @car.Engine Liter</p>
+                    <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
+                    <div class="card-buttons">
+                        @* <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Cars", new { id = car.Id })">Details</a> *@
+                        <a class="info car-card-info-link btn btn-blue" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<h3 style="margin:0">Rented cars</h3>
+<div style="widht: 100%; border: 1px solid #016296;padding: 0.5rem; border-radius: 0.5rem; overflow: scroll; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+    <div style="widht: 100%; display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; gap: 1rem; margin-bottom: 1rem">
+        @foreach (var car in Model.Rentals)
+        {
+            <div class="car-card">
+                <div class="car-card-info">
+                    <h3 class="info car-card-info-brand">@car.Car.Brand</h3>
+                    <p class="info car-card-info-model">@car.Car.Model / @car.Car.Engine Liter</p>
+                    <p class="info car-card-info-price">Price: @car.Car.Price GEL/Day</p>
+                    <div class="card-buttons">
+                        @* <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Cars", new { id = car.Id })">Details</a> *@
+                        <a class="info car-card-info-link btn btn-blue" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
 
 
 @* 
@@ -140,7 +198,7 @@
 </div>
 <div id="carMap" style="height: 300px; width: 100%;"></div> *@
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -175,3 +233,4 @@
         });
     });
 </script>
+ *@

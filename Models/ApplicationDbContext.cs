@@ -18,10 +18,10 @@ namespace CarRentalApplication.Models
 
         public DbSet<Brand> Brands { get; set; }
 
-        public DbSet<Model> Models { get; set; }  
+        public DbSet<Model> Models { get; set; }
 
         public DbSet<Cities> Cities { get; set; }
-        
+
         public DbSet<Colors> Colors { get; set; }
 
         public DbSet<Engines> Engines { get; set; }
@@ -50,16 +50,41 @@ namespace CarRentalApplication.Models
                 .HasForeignKey(c => c.CreatorUserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Car>()
-                .HasMany(c => c.UserWhoRented)
-                .WithMany(u => u.RentedCar)
-                .UsingEntity(j => j.ToTable("CarRentals"));
+            modelBuilder.Entity<Rent>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Rentals)
+                .HasForeignKey(r => r.UserId);
+
+            modelBuilder.Entity<Rent>()
+                .HasOne(r => r.Car)
+                .WithMany(c => c.Rentals)
+                .HasForeignKey(r => r.CarId);
 
             modelBuilder.Entity<Brand>().HasMany(b => b.Models)
                 .WithOne(m => m.Brand)
                 .HasForeignKey(m => m.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
-        }
+            //    base.OnModelCreating(modelBuilder);
 
+            //    modelBuilder.Entity<User>().ToTable("Users");
+
+            //    modelBuilder.Entity<Car>()
+            //        .HasOne(c => c.CreatorUser)
+            //        .WithMany(u => u.PostedCar)
+            //        .HasForeignKey(c => c.CreatorUserId)
+            //        .OnDelete(DeleteBehavior.Restrict);
+
+            //    modelBuilder.Entity<Car>()
+            //        .HasMany(c => c.UserWhoRented)
+            //        .WithMany(u => u.RentedCar)
+            //        .UsingEntity(j => j.ToTable("CarRentals"));
+
+            //    modelBuilder.Entity<Brand>().HasMany(b => b.Models)
+            //        .WithOne(m => m.Brand)
+            //        .HasForeignKey(m => m.BrandId)
+            //        .OnDelete(DeleteBehavior.Restrict);
+            //}
+
+        }
     }
 }
