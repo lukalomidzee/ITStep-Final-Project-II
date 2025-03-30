@@ -17,7 +17,14 @@ namespace CarRentalApplication.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var response = await _carsService.GetCarsListLimited(10);
+            var response = await _carsService.GetCarsListByPopularity(6);
+
+            //var topThreeRent = response.Data.OrderBy(c => c.RentCount).Take(3).ToList();
+
+            //var topThreeLike = response.Data.OrderBy(c => c.LikeCount).Take(3).ToList();
+
+            //ViewBag.TopThreeRent = topThreeRent;
+            //ViewBag.TopThreeLike = topThreeLike;
             
             if (User.Identity.IsAuthenticated)
             {

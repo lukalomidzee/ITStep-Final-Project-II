@@ -1,5 +1,6 @@
 ﻿using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
+using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Models.VMs.Cars;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -177,6 +178,67 @@ namespace CarRentalApplication.Controllers
             ViewBag.LikedCarsIds = likedCars;
 
             return View(result.Data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Rent(int carId, int number)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                TempData["Error"] = "User is not authenticated";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            var carExists = await _context.Cars.AnyAsync(c => c.Id == carId);
+            if (!carExists)
+            {
+                TempData["Error"] = "Car doesn't exist";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            var car = await _carsService.GetCarById(carId);
+
+            if (car.Data.Status == 0)
+            {
+                TempData["Error"] = "Car not available";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            var userRent = await _context.Rents
+                .FirstOrDefaultAsync(r => r.UserId == userId && r.CarId == carId);
+
+            if (userRent != null && userRent.Active != 0)
+            {
+                TempData["Error"] = "User already rented this car";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            var carRent = await _context.Rents
+                .FirstOrDefaultAsync(r => r.CarId == carId && DateTime.Now < r.EndDate);
+
+            //if (carRent != null)
+            //{
+            //    TempData["Error"] = "Someone has already rented this car";
+            //    return RedirectToAction("Details", "Cars", new { id = carId });
+            //}
+
+            await _context.Rents.AddAsync(new Rent
+            {
+                UserId = userId,
+                CarId = carId,
+                StartDate = DateTime.Now,
+                TotalDays = number,
+                EndDate = DateTime.Now.AddDays(number)
+            });
+
+
+            //car.Data.Status = 0;
+
+            car.Data.RentCount++;
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Car rented successfully";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

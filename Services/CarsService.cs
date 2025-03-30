@@ -150,7 +150,9 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<Car>>> GetCarsListByPopularity(int carCount)
         {
-            var cars = await _context.Cars.Where(c => c.Status == 1).OrderByDescending(c => c.LikeCount).Take(carCount).ToListAsync();
+            var cars = await _context.Cars.Where(c => c.Status == 1)
+                .Include(c => c.CarImages).OrderByDescending(c => c.LikeCount)
+                .ThenByDescending(c => c.RentCount).Take(carCount).ToListAsync();
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };

@@ -44,6 +44,8 @@ namespace CarRentalApplication.Models.Entities.Cars
 
         public int LikeCount { get; set; }
 
+        public int RentCount { get; set; }
+
         public int Status { get; set; } = 1;
         public User CreatorUser { get; set; }
 

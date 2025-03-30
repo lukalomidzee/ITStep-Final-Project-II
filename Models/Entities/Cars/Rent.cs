@@ -16,6 +16,8 @@ namespace CarRentalApplication.Models.Entities.Cars
 
         public int TotalDays { get; set; }
 
+        public int Active { get; set; } = 1;
+
         public Car Car { get; set; }
 
         public User User { get; set; }

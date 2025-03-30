@@ -1,8 +1,8 @@
-﻿@model CarRentalApplication.Models.Entities.Cars.Car
+﻿@model List<CarRentalApplication.Models.Entities.Cars.Car>
 
 @{
     // ViewData["Title"] = $"Car - {Model.Year} {Model.Brand} {Model.Model}";
-    ViewData["Title"] = "Car Details";
+    ViewData["Title"] = "Profile";
 }
 
 @if (TempData["Error"] != null)
@@ -78,7 +78,7 @@
                         <label for="slider">Select a value: </label>
                         <br />
                         <div style="display:flex; flex-direction: row; align-items: center;">
-                            <input type="number" id="carId" name="carId" value="@Model.Id" hidden/>
+                            <input type="number" id="carId" name="carId" value="@Model.Id" hidden />
                             <input type="range" id="slider" name="slider" min="1" max="30" value="7">
                             <input type="number" id="number" name="number" min="1" max="30" value="7" onchange="syncSlider()" style="margin-left: 10px;">
                         </div>
@@ -86,7 +86,7 @@
                     </div>
 
                     <p style="margin:0; width: 120px;">Total: <span id="totalPrice"></span> GEL</p>
-                    <button class="btn btn-success" >Rent</button>
+                    <button class="btn btn-success">Rent</button>
                 </form>
 
                 <script>
@@ -121,17 +121,17 @@
 </div>
 <div id="carMap" style="height: 300px; width: 100%;"></div>
 
-    <script>
-        var carLocation = [@Model.Latitude, @Model.Longitude];
+<script>
+    var carLocation = [@Model.Latitude, @Model.Longitude];
 
-        var map = L.map('carMap').setView(carLocation, 12);
+    var map = L.map('carMap').setView(carLocation, 12);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-        L.marker(carLocation).addTo(map);
-    </script>
+    L.marker(carLocation).addTo(map);
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
