@@ -20,21 +20,33 @@
         <div class="form-group form-field">
             <label>Brand</label>
             <br />
-            <input asp-for="Brand" class="form-input form-control" />
-            <span asp-validation-for="Brand" class="text-danger" style="display:block;"></span>
+            <select id="brand" name="Brand" asp-for="Brand" class="form-select form-control js-example-basic-single">
+                <option value="" disabled selected>Select a Brand</option>
+                @foreach (var brand in ViewBag.Brands)
+                {
+                    <option value="@brand.Id">@brand.Name</option>
+                }
+            </select>
         </div>
 
         <div class="form-group form-field">
+            <label for="model">Model</label>
+            <select asp-for="Model" id="model" name="Model" class="form-select form-control" disabled>
+                <option value="" disabled selected>Select a Model</option>
+            </select>
+        </div>
+
+        @* <div class="form-group form-field">
             <label>Model</label>
             <br />
             <input asp-for="Model" class="form-input form-control" />
             <span asp-validation-for="Model" class="text-danger" style="display:block;"></span>
-        </div>
+        </div> *@
 
         <div class="form-group form-field">
             <label>Year</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for="Year" class="form-select" aria-label="Default select example">
                 <option selected disabled>Select year</option>
                 @foreach (var select in ViewBag.Selectors.Years)
                 {
@@ -46,7 +58,7 @@
         <div class="form-group form-field">
             <label>Color</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for="Color" class="form-select" aria-label="Default select example">
                 <option selected disabled>Select color</option>
                 @foreach (var select in ViewBag.Selectors.Colors)
                 {
@@ -58,7 +70,7 @@
         <div class="form-group form-field">
             <label>Engine</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for="Engine" class="form-select" aria-label="Default select example">
                 <option selected disabled>Select engine</option>
                 @foreach (var select in ViewBag.Selectors.Engines)
                 {
@@ -70,7 +82,7 @@
         <div class="form-group form-field">
             <label>Gearbox</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for="Gearbox" class="form-select" aria-label="Default select example">
                 <option selected disabled>Select gearbox</option>
                 @foreach (var select in ViewBag.Selectors.Gearboxes)
                 {
@@ -82,7 +94,7 @@
         <div class="form-group form-field">
             <label>Fuel Capacity</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for=FuelCapacity class="form-select" aria-label="Default select example">
                 <option selected disabled>Select fuel capacity</option>
                 @foreach (var select in ViewBag.Selectors.FuelCapacities)
                 {
@@ -94,7 +106,7 @@
         <div class="form-group form-field">
             <label>Seats</label>
             <br />
-            <select class="form-select" aria-label="Default select example">
+            <select asp-for="Seats" class="form-select" aria-label="Default select example">
                 <option selected disabled>Select seats amount</option>
                 @foreach (var select in ViewBag.Selectors.Seats)
                 {
@@ -112,7 +124,7 @@
                 {
                     <option value="@select.Text">@select.Text</option>
                 })
-                <span asp-validation-for="City" class="text-danger" style="display:block;"></span>
+                
             </select>
         </div>
 
@@ -143,3 +155,32 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#brand").change(function () {
+            var brandName = $(this).val();
+            var modelDropdown = $("#model");
+
+            if (brandName) {
+                modelDropdown.prop("disabled", false);
+
+                $.get("/Cars/GetModelsByBrand/" + brandName, function (data) {
+                    modelDropdown.empty().append('<option value="" disabled selected>Select a Model</option>');
+
+                    $.each(data.data, function (index, model) {
+                        modelDropdown.append($('<option></option>').val(model.id).text(model.name));
+                    });
+                });
+            } else {
+                modelDropdown.prop("disabled", true).empty().append('<option value="">Select a Model</option>'); // Reset
+            }
+        });
+        $('.js-example-basic-single').select2();
+    });
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });
+</script>

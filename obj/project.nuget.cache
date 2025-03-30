@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kEwPdr8+wy1VrJKjSXNvOCCL6pQTLWRMZvFXW+lXZ7ABBgE219/2l43ctLnZ54ohcca1uLCbC2d3cXMKQSOUAA==",
+  "dgSpecHash": "+ltRimrH18Zztt1oupy2du2ILo9WD6moP725RXAsMSoW8k6SSJdVHOgK0AKprw6j0Yxv0NL00E9/wGtu6knikw==",
   "success": true,
   "projectFilePath": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\CarRentalApplication.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Luka\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Luka\\.nuget\\packages\\jquery\\1.7.0\\jquery.1.7.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.14\\microsoft.aspnetcore.authentication.jwtbearer.8.0.14.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.14\\microsoft.aspnetcore.cryptography.internal.8.0.14.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.14\\microsoft.aspnetcore.cryptography.keyderivation.8.0.14.nupkg.sha512",
@@ -52,6 +53,7 @@
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Luka\\.nuget\\packages\\select2.js\\4.0.13\\select2.js.4.0.13.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",

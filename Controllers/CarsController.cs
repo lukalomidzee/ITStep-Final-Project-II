@@ -2,8 +2,10 @@
 using CarRentalApplication.Models;
 using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Models.VMs.Cars;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace CarRentalApplication.Controllers
@@ -28,19 +30,28 @@ namespace CarRentalApplication.Controllers
         public async Task<IActionResult> AddCar()
         {
             var selectorData = await _selectorsService.GetAllSelectors();
+            var brands = await _carsService.GetBrands();
             var selectors = new
             {
                 Cities = selectorData[0],
                 Colors = selectorData[1],
                 Engines = selectorData[2], 
                 FuelCapacities = selectorData[3], 
-                Gearboxes = selectorData[4], // List of SelectListItem
-                Seats = selectorData[5],    // List of SelectListItem
-                Years = selectorData[6]    // List of SelectListItem
+                Gearboxes = selectorData[4],
+                Seats = selectorData[5],
+                Years = selectorData[6] 
             };
-
+            ViewBag.Brands = brands.Data;
             ViewBag.Selectors = selectors;
             return View();
+        }
+
+        [HttpGet("/Cars/GetModelsByBrand/{brandId}")]
+        public async Task<IActionResult> GetModelsByBrand(int brandId)
+        {
+            var models = await _carsService.GetModelsByBrand(brandId);
+
+            return Ok(models);
         }
 
         [HttpPost]

@@ -30,7 +30,7 @@ namespace CarRentalApplication.Models.VMs.Cars
         public string FuelCapacity { get; set; }
 
         [Required]
-        [Range(2, 7)]
+        [Range(2, 16)]
         public int Seats { get; set; }
 
         [Required]

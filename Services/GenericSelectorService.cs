@@ -18,7 +18,7 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<T>>> GetAllAsync()
         {
-            var entities = await _dbSet.OrderBy(x => x.Value).ToListAsync();
+            var entities = await _dbSet.OrderByDescending(x => x.Value).ToListAsync();
             if (entities == null)
             {
                 return new ServiceResponse<List<T>> { Success = false, Message = "Not found" };

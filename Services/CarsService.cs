@@ -67,7 +67,32 @@ namespace CarRentalApplication.Services
             {
                 return false;
             }
+        }
 
+        public async Task<ServiceResponse<List<Brand>>> GetBrands()
+        {
+            var brands = await _context.Brands.OrderBy(b => b.Name).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Brand>> { Data = brands, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Brand>> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
+        public async Task<ServiceResponse<List<Model>>> GetModelsByBrand(int brandId)
+        {
+            var models = await _context.Models.Where(m => m.BrandId == brandId).OrderBy(m => m.Name).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Model>> { Data = models, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Model>> { Data = null, Success = false, Message = ex.Message };
+            }
         }
     }
 }

@@ -76,6 +76,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.14, )"
+            },
+            "Select2.js": {
+              "target": "Package",
+              "version": "[4.0.13, )"
             }
           },
           "imports": [

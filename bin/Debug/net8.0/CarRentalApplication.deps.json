@@ -14,7 +14,8 @@
           "Microsoft.EntityFrameworkCore": "8.0.14",
           "Microsoft.EntityFrameworkCore.Design": "8.0.14",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.14",
-          "Microsoft.EntityFrameworkCore.Tools": "8.0.14"
+          "Microsoft.EntityFrameworkCore.Tools": "8.0.14",
+          "Select2.js": "4.0.13"
         },
         "runtime": {
           "CarRentalApplication.dll": {}
@@ -86,6 +87,7 @@
           }
         }
       },
+      "jQuery/1.7.0": {},
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.14": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
@@ -726,6 +728,11 @@
           }
         }
       },
+      "Select2.js/4.0.13": {
+        "dependencies": {
+          "jQuery": "1.7.0"
+        }
+      },
       "System.ClientModel/1.0.0": {
         "dependencies": {
           "System.Memory.Data": "1.0.2",
@@ -1022,6 +1029,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "jQuery/1.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UEZuBreHZNLao3z9zNPeSadyoPwKDP/5kFh+Mn1Pm9ZS0czk7bv0O6RreloGSIMAfTLZCiigNkuPb2bXKtUM+g==",
+      "path": "jquery/1.7.0",
+      "hashPath": "jquery.1.7.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.14": {
       "type": "package",
@@ -1323,6 +1337,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Select2.js/4.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YbsIWar+HV75AXNqejfpKyO6gR6jQ5UJKE+QA5dmXcY+neMiw3EVZCj8/Z3l5Jn/AXE82+Eftweq8K1KlObxsw==",
+      "path": "select2.js/4.0.13",
+      "hashPath": "select2.js.4.0.13.nupkg.sha512"
     },
     "System.ClientModel/1.0.0": {
       "type": "package",
