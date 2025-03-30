@@ -14,7 +14,7 @@
     <div class="cars-cards-div">
         @if (Model.Count < 1)
         {
-            <div class="alert alert-danger">
+            <div class="alert alert-alert">
                 Car list empty
             </div>
         }
@@ -23,9 +23,30 @@
         {
             <div class="car-card">
                 @* <div class="car-card-image">
-                    <img src="@car.ImageUrl" alt="@car.Model" />
+                    @foreach (var image in car.CarImages)
+                    {
+                        <img src="@image.ImagePath" alt="@car.Model" class="car-image"/>
+                    }
                 </div> *@
                 <div class="car-card-info">
+                    <div id="carousel-@car.Id" class="carousel slide">
+                        <div class="carousel-inner">
+                            @foreach (var image in car.CarImages.Select((img, index) => new { img, index }))
+                            {
+                                <div class="carousel-item @(image.index == 0 ? "active" : "")">
+                                    <img src="@image.img.ImagePath" class="d-block w-100 carousel-image" alt="@car.Model" class="carousel-image">
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@car.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@car.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <h3 class="info car-card-info-brand">@car.Brand</h3>
                     <p class="info car-card-info-model">@car.Model</p>
                     <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
@@ -35,3 +56,15 @@
         }
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function (carousel) {
+            var bsCarousel = new bootstrap.Carousel(carousel, {
+                ride: false
+            });
+        });
+    });
+</script>

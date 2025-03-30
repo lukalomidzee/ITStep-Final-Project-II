@@ -97,7 +97,7 @@ namespace CarRentalApplication.Services
         #region Car list
         public async Task<ServiceResponse<List<Car>>> GetCarsList()
         {
-            var cars = await _context.Cars.Where(c => c.Status == 1).ToListAsync();
+            var cars = await _context.Cars.Where(c => c.Status == 1).Include(c => c.CarImages).ToListAsync();
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -110,7 +110,7 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<Car>>> GetCarsListLimited(int carCount)
         {
-            var cars = await _context.Cars.Where(c => c.Status == 1).Take(carCount).ToListAsync();
+            var cars = await _context.Cars.Where(c => c.Status == 1).Include(c => c.CarImages).Take(carCount).ToListAsync();
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -123,7 +123,7 @@ namespace CarRentalApplication.Services
 
         public async Task<ServiceResponse<List<Car>>> GetCarsListByUser(string userId)
         {
-            var cars = await _context.Cars.Where(c => c.Status == 1 && c.CreatorUserId == userId).ToListAsync();
+            var cars = await _context.Cars.Where(c => c.Status == 1 && c.CreatorUserId == userId).Include(c => c.CarImages).ToListAsync();
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
