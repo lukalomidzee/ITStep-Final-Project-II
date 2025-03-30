@@ -9,7 +9,7 @@ namespace CarRentalApplication.Interfaces
     {
         Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model);
 
-        Task<bool> DeleteCar(int carId);
+        Task<ServiceResponse<bool>> DeleteCar(int carId);
 
         Task<ServiceResponse<List<Brand>>> GetBrands();
 

@@ -41,6 +41,8 @@ namespace CarRentalApplication.Models.Entities.Cars
         public required string CreatorUserId { get; set; }
 
         public int LikeCount { get; set; }
+
+        public int Status { get; set; } = 1;
         public User CreatorUser { get; set; }
 
         [MinLength(9), MaxLength(9)]

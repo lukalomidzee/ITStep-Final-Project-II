@@ -42,7 +42,9 @@ namespace CarRentalApplication.Services
                 Price = model.Price,
                 Image = model.Image,
                 CreatorUserId = userId,
-                CreatorPhoneNummber = phoneNumber
+                CreatorPhoneNummber = phoneNumber,
+                LikeCount = 0,
+                Status = 1
             };
 
             try
@@ -58,24 +60,24 @@ namespace CarRentalApplication.Services
             
         }
 
-        public async Task<bool> DeleteCar(int carId)
+        public async Task<ServiceResponse<bool>> DeleteCar(int carId)
         {
             Car car = await _context.Cars.FirstOrDefaultAsync(c => c.Id == carId);
 
             if (car == null)
             {
-                return false;
+                return new ServiceResponse<bool> { Data = false, Success = false, Message = "Car not found" };
             }
 
             try
             {
                 _context.Cars.Remove(car);
                 await _context.SaveChangesAsync();
-                return true;
+                return new ServiceResponse<bool> { Data = true, Success = true, Message = "Car deleted successfully" };
             }
             catch (Exception ex)
             {
-                return false;
+                return new ServiceResponse<bool> { Data = false, Success = false, Message = "Couldn't delete car" };
             }
         }
 
