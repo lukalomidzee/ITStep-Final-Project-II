@@ -37,13 +37,13 @@ namespace CarRentalApplication.Models.VMs.Cars
         [Required]
         public string City { get; set; }
 
-        public string? Latitude { get; set; } = default;
+        public double? Latitude { get; set; } = default;
 
-        public string? Longitude { get; set; } = default;
+        public double? Longitude { get; set; } = default;
 
         // Price and Image
         [Required]
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required]
         public string ImagePath { get; set; }

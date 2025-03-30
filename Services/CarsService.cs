@@ -55,7 +55,7 @@ namespace CarRentalApplication.Services
                 {
                     var carImages = imagePaths.Select(path => new CarImage
                     {
-                        CarId = car.Id,  // Use the saved car's ID
+                        CarId = car.Id,
                         ImagePath = path
                     }).ToList();
 

@@ -28,12 +28,12 @@ namespace CarRentalApplication.Models.Entities.Cars
 
         public required string City { get; set; }
 
-        public string? Latitude { get; set; }
+        public double? Latitude { get; set; }
 
-        public string? Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         // Price and Image
-        public required string Price { get; set; }
+        public required decimal Price { get; set; }
 
         public ICollection<CarImage> CarImages { get; set; } = new List<CarImage>();
 
