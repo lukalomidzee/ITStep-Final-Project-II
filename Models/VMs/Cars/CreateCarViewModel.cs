@@ -8,10 +8,10 @@ namespace CarRentalApplication.Models.VMs.Cars
         // Car properties -----------------------------
 
         [Required]
-        public string Brand { get; set; }
+        public int Brand { get; set; }
 
         [Required]
-        public string Model { get; set; }
+        public int Model { get; set; }
 
         [Required]
         [Range(1900, 2025)]

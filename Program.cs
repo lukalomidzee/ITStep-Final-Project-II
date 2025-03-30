@@ -4,6 +4,7 @@ using CarRentalApplication.Models.Entities.Dictionary;
 using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Services;
 using CarRentalApplication.Services.Selectors;
+using CarRentalApplication.Services.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -25,6 +26,7 @@ namespace CarRentalApplication
             });
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsPrincipalFactory>();
 
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICarsService, CarsService>();

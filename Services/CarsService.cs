@@ -2,6 +2,7 @@
 using CarRentalApplication.Models;
 using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.VMs.Cars;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalApplication.Services
@@ -15,11 +16,20 @@ namespace CarRentalApplication.Services
             _context = context;
         }
 
-        public async Task<bool> AddCar(string userId, string phoneNumber, CreateCarViewModel model)
+        public async Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model)
         {
+            //int brandId = int.Parse(model.Brand);
+            //int modelId = int.Parse(model.Model);
+
+            //string brandName = _context.Brands.FirstOrDefaultAsync(b => b.Id == brandId).Result.Name;
+            //string modelName = _context.Models.FirstOrDefaultAsync(m => m.Id == modelId).Result.Name;
+
+            var brandName = await _context.Brands.FirstOrDefaultAsync(b => b.Id == model.Brand);
+            var modelName = await _context.Models.FirstOrDefaultAsync(m => m.Id == model.Model);
+
             Car car = new Car() {    
-                Brand = model.Brand,
-                Model = model.Model,
+                Brand = brandName.Name,
+                Model = modelName.Name,
                 Year = model.Year,
                 Color = model.Color,
                 Engine = model.Engine,
@@ -39,11 +49,11 @@ namespace CarRentalApplication.Services
             {
                 await _context.Cars.AddAsync(car);
                 await _context.SaveChangesAsync();
-                return true;
+                return new ServiceResponse<bool> { Data = true, Success = true, Message = "Car added successfully" };
             }
             catch (Exception ex)
             {
-                return false;
+                return new ServiceResponse<bool> { Data = false, Success = false, Message = "Couldn't add car" };
             }
             
         }

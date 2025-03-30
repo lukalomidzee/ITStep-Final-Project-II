@@ -59,11 +59,11 @@ namespace CarRentalApplication.Controllers
         {
             var modelState = ModelState;
 
-            var form = await Request.ReadFormAsync();
-            foreach (var key in form.Keys)
-            {
-                Console.WriteLine($"{key}: {form[key]}");
-            }
+            //var form = await Request.ReadFormAsync();
+            //foreach (var key in form.Keys)
+            //{
+            //    Console.WriteLine($"{key}: {form[key]}");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -73,16 +73,24 @@ namespace CarRentalApplication.Controllers
                     return Unauthorized();
                 }
 
-                var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
+                var phoneNumber = User.Identity.Name;
 
                 if (phoneNumber == null)
                 {
-                    TempData["Error"] = "Invalid car creation attempt";
+                    TempData["Error"] = "Invalid car creation attempt - No phone number found";
                     return RedirectToAction("AddCar");
                 }
 
-                await _carsService.AddCar(userId, phoneNumber, carModel);
-                return RedirectToAction("Index");
+                var result = await _carsService.AddCar(userId, phoneNumber, carModel);
+                if (result.Success)
+                {
+                    TempData["Success"] = result.Message;
+                }
+                else
+                {
+                    TempData["Error"] = result.Message;
+                }
+                return RedirectToAction("AddCar");
             }
             
 
