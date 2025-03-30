@@ -16,14 +16,9 @@ namespace CarRentalApplication.Services
             _context = context;
         }
 
+        #region Car CRUD
         public async Task<ServiceResponse<bool>> AddCar(string userId, string phoneNumber, CreateCarViewModel model)
         {
-            //int brandId = int.Parse(model.Brand);
-            //int modelId = int.Parse(model.Model);
-
-            //string brandName = _context.Brands.FirstOrDefaultAsync(b => b.Id == brandId).Result.Name;
-            //string modelName = _context.Models.FirstOrDefaultAsync(m => m.Id == modelId).Result.Name;
-
             var brandName = await _context.Brands.FirstOrDefaultAsync(b => b.Id == model.Brand);
             var modelName = await _context.Models.FirstOrDefaultAsync(m => m.Id == model.Model);
 
@@ -40,7 +35,7 @@ namespace CarRentalApplication.Services
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,
                 Price = model.Price,
-                Image = model.Image,
+                ImagePath = model.Image,
                 CreatorUserId = userId,
                 CreatorPhoneNummber = phoneNumber,
                 LikeCount = 0,
@@ -71,7 +66,7 @@ namespace CarRentalApplication.Services
 
             try
             {
-                _context.Cars.Remove(car);
+                car.Status = 0;
                 await _context.SaveChangesAsync();
                 return new ServiceResponse<bool> { Data = true, Success = true, Message = "Car deleted successfully" };
             }
@@ -80,7 +75,65 @@ namespace CarRentalApplication.Services
                 return new ServiceResponse<bool> { Data = false, Success = false, Message = "Couldn't delete car" };
             }
         }
+        #endregion
 
+        #region Car list
+        public async Task<ServiceResponse<List<Car>>> GetCarsList()
+        {
+            var cars = await _context.Cars.Where(c => c.Status == 1).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Car>> { Data = cars, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
+        public async Task<ServiceResponse<List<Car>>> GetCarsListLimited(int carCount)
+        {
+            var cars = await _context.Cars.Where(c => c.Status == 1).Take(carCount).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Car>> { Data = cars, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
+        public async Task<ServiceResponse<List<Car>>> GetCarsListByUser(string userId)
+        {
+            var cars = await _context.Cars.Where(c => c.Status == 1 && c.CreatorUserId == userId).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Car>> { Data = cars, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
+        public async Task<ServiceResponse<List<Car>>> GetCarsListByPopularity(int carCount)
+        {
+            var cars = await _context.Cars.Where(c => c.Status == 1).OrderByDescending(c => c.LikeCount).Take(carCount).ToListAsync();
+            try
+            {
+                return new ServiceResponse<List<Car>> { Data = cars, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
+        #endregion
+
+
+        #region Models and Brands
         public async Task<ServiceResponse<List<Brand>>> GetBrands()
         {
             var brands = await _context.Brands.OrderBy(b => b.Name).ToListAsync();
@@ -106,5 +159,6 @@ namespace CarRentalApplication.Services
                 return new ServiceResponse<List<Model>> { Data = null, Success = false, Message = ex.Message };
             }
         }
+        #endregion
     }
 }

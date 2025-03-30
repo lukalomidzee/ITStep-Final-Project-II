@@ -11,6 +11,14 @@ namespace CarRentalApplication.Interfaces
 
         Task<ServiceResponse<bool>> DeleteCar(int carId);
 
+        Task<ServiceResponse<List<Car>>> GetCarsList();
+
+        Task<ServiceResponse<List<Car>>> GetCarsListLimited(int carCount);
+
+        Task<ServiceResponse<List<Car>>> GetCarsListByUser(string userId);
+
+        Task<ServiceResponse<List<Car>>> GetCarsListByPopularity(int carCount);
+
         Task<ServiceResponse<List<Brand>>> GetBrands();
 
         Task<ServiceResponse<List<Model>>> GetModelsByBrand(int brandId);

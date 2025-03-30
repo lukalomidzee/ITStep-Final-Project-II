@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<CarRentalApplication.Models.Entities.Cars.Car>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -10,6 +12,26 @@
     </h1>
 
     <div class="cars-cards-div">
+        @if (Model.Count < 1)
+        {
+            <div class="alert alert-danger">
+                Car list empty
+            </div>
+        }
 
+        @foreach (var car in Model)
+        {
+            <div class="car-card">
+                @* <div class="car-card-image">
+                    <img src="@car.ImageUrl" alt="@car.Model" />
+                </div> *@
+                <div class="car-card-info">
+                    <h3 class="info car-card-info-brand">@car.Brand</h3>
+                    <p class="info car-card-info-model">@car.Model</p>
+                    <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
+                    <a class="info car-card-info-link" href="@Url.Action("Details", "Car", new { id = car.Id })" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        }
     </div>
 </div>

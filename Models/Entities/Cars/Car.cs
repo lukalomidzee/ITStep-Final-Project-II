@@ -35,7 +35,7 @@ namespace CarRentalApplication.Models.Entities.Cars
         // Price and Image
         public required string Price { get; set; }
 
-        public required string Image { get; set; }
+        public required string ImagePath { get; set; }
 
         // User properties ----------------------------
         public required string CreatorUserId { get; set; }

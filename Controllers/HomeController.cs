@@ -1,16 +1,20 @@
+using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
+using CarRentalApplication.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace CarRentalApplication.Controllers
 {
-    public class HomeController(ILogger<HomeController> logger) : Controller
+    public class HomeController(ILogger<HomeController> logger, ICarsService carsService) : Controller
     {
         private readonly ILogger<HomeController> _logger = logger;
+        private readonly ICarsService _carsService = carsService;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var response = await _carsService.GetCarsListLimited(10);
+            return View(response.Data);
         }
 
         public IActionResult Introduction()
