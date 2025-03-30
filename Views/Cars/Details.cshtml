@@ -28,6 +28,7 @@
            style="cursor:pointer; font-size: 24px;">
         </i>
     }
+    <a class="nav-link" asp-controller="Home" asp-action="Index">Back</a>
 </div>
 
 <div class="car-details">
@@ -68,16 +69,53 @@
             @if (!User.Identity.IsAuthenticated)
             {
                 <a class="btn btn-blue" asp-controller="Auth" asp-action="Login">Rent</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Back</a>
             }
             else
             {
-                <a class="btn btn-blue" asp-controller="Cars" asp-action="Rent" asp-route-carId="@Model.Id">Rent</a>
-                <form asp-controller="Cars" asp-action="Rent" method="post">
+                <form asp-controller="Cars" asp-action="Rent" asp-route-id="@Model.Id" method="post" style="display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap: 0.2rem; margin-bottom: 1rem ">
+                    <div>
+                        <label for="slider">Select a value: </label>
+                        <br />
+                        <div style="display:flex; flex-direction: row; align-items: center;">
+                            <input type="number" name="id" value="@Model.Id" hidden disabled/>
+                            <input type="range" id="slider" name="slider" min="1" max="30" value="7">
+                            <input type="number" id="number" name="number" min="1" max="30" value="7" onchange="syncSlider()" style="margin-left: 10px;">
+                        </div>
 
+                    </div>
+
+                    <p style="margin:0; width: 120px;">Total: <span id="totalPrice"></span> GEL</p>
+                    <button class="btn btn-success" >Rent</button>
                 </form>
+
+                <script>
+                    const slider = document.getElementById("slider");
+                    const numberInput = document.getElementById("number");
+                    const totalPriceDisplay = document.getElementById("totalPrice");
+
+                    const modelPrice = @Model.Price;
+
+                    function updateTotalPrice() {
+                        const days = parseInt(slider.value);
+                        const totalPrice = days * modelPrice;
+                        totalPriceDisplay.textContent = totalPrice;
+                    }
+
+                    slider.oninput = function () {
+                        numberInput.value = slider.value;
+                        updateTotalPrice();
+                    };
+
+                    function syncSlider() {
+                        slider.value = numberInput.value;
+                        updateTotalPrice();
+                    }
+
+                    updateTotalPrice();
+                </script>
             }
 
-            <a class="nav-link" asp-controller="Home" asp-action="Index">Back</a>
         </div>
     </div>
 </div>
