@@ -48,10 +48,11 @@
                         </button>
                     </div>
                     <h3 class="info car-card-info-brand">@car.Year @car.Brand</h3>
-                    <p class="info car-card-info-model">@car.Model @car.Engine Liter</p>
+                    <p class="info car-card-info-model">@car.Model / @car.Engine Liter</p>
                     <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
                     <div class="card-buttons">
-                        <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Car", new { id = car.Id })">Details</a>
+                        @* <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Cars", new { id = car.Id })">Details</a> *@
+                        <a class="info car-card-info-link btn btn-blue" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <i class="fas fa-heart @(ViewBag.LikedCarsIds.Contains(car.Id) ? "liked" : "unliked")"

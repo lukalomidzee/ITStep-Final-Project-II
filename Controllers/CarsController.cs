@@ -133,6 +133,8 @@ namespace CarRentalApplication.Controllers
                 return Json(new { success = false, message = "Car not found" });
             }
 
+            var car = await _carsService.GetCarById(carId);
+
             var userLike = await _context.UsersCarsLikes
                 .FirstOrDefaultAsync(ul => ul.UserId == userId && ul.CarId == carId);
 
@@ -146,16 +148,35 @@ namespace CarRentalApplication.Controllers
                     CarId = carId
                 });
                 liked = true;
+                car.Data.LikeCount++;
             }
             else
             {
                 _context.UsersCarsLikes.Remove(userLike);
                 liked = false;
+                car.Data.LikeCount--;
             }
 
             await _context.SaveChangesAsync();
 
             return Json(new { success = true, liked });
+        }
+
+        [HttpGet("/Cars/Details/{carId}")]
+        public async Task<IActionResult> Details(int carId)
+        {
+            var result = await _carsService.GetCarById(carId);
+
+            if (!result.Success)
+            {
+                TempData["Error"] = result.Message;
+                return RedirectToAction("Index");
+            }
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<int> likedCars = await _context.UsersCarsLikes.Where(ucl => ucl.UserId == userId).Select(ucl => ucl.CarId).ToListAsync();
+            ViewBag.LikedCarsIds = likedCars;
+
+            return View(result.Data);
         }
     }
 }

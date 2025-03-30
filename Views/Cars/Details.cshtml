@@ -1,0 +1,133 @@
+﻿@model CarRentalApplication.Models.Entities.Cars.Car
+
+@{
+    // ViewData["Title"] = $"Car - {Model.Year} {Model.Brand} {Model.Model}";
+    ViewData["Title"] = "Car";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<div style="display:flex; flex-direction:row; align-items:center; gap: 1rem; margin-bottom: 1rem">
+    <h3 style="margin:0">@Model.Year @Model.Brand @Model.Model</h3>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <i class="fas fa-heart @(ViewBag.LikedCarsIds.Contains(Model.Id) ? "liked" : "unliked")"
+           data-car-id="@Model.Id"
+           style="cursor:pointer; font-size: 24px;">
+        </i>
+    }
+</div>
+
+<div class="car-details">
+    <div id="carousel-@Model.Id" class="carousel slide car-photos">
+        <div class="carousel-inner carousel-inner-detailed">
+            @foreach (var image in Model.CarImages.Select((img, index) => new { img, index }))
+            {
+                <div class="carousel-item @(image.index == 0 ? "active" : "")">
+                    <img src="@image.img.ImagePath" class="d-block w-100 carousel-image" alt="@Model.Model">
+                </div>
+            }
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Id" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Id" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="car-info">
+        <h3>Details:</h3>
+        <ul>
+            <li>Year: @Model.Year</li>
+            <li>Brand: @Model.Brand</li>
+            <li>Model: @Model.Model</li>
+            <li>Engine: @Model.Engine L</li>
+            <li>Price: @Model.Price GEL/Day</li>
+            <li>Color: @Model.Color</li>
+            <li>Transmission: @Model.Gearbox</li>
+            <li>Seats: @Model.Seats</li>
+            <li>Fuel capacity: @Model.FuelCapacity L</li>
+            <li>Price: @Model.Price GEL/Day</li>
+            <li>City: @Model.City</li>
+        </ul>
+        <div style="display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap: 0.2rem; margin-bottom: 1rem">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-blue" asp-controller="Auth" asp-action="Login">Rent</a>
+            }
+            else
+            {
+                <a class="btn btn-blue" asp-controller="Cars" asp-action="Rent" asp-route-carId="@Model.Id">Rent</a>
+                <form asp-controller="Cars" asp-action="Rent" method="post">
+
+                </form>
+            }
+
+            <a class="nav-link" asp-controller="Home" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>
+<div id="carMap" style="height: 300px; width: 100%;"></div>
+
+    <script>
+        var carLocation = [@Model.Latitude, @Model.Longitude];
+
+        var map = L.map('carMap').setView(carLocation, 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker(carLocation).addTo(map);
+    </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function (carousel) {
+            var bsCarousel = new bootstrap.Carousel(carousel, {
+                ride: false
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $(".fa-heart").click(function () {
+            var icon = $(this);
+            var carId = icon.data("car-id");
+
+            $.ajax({
+                url: '/Cars/ToggleLike',
+                type: 'POST',
+                data: { carId: carId },
+                success: function (response) {
+                    if (response.liked) {
+                        icon.removeClass("unliked").addClass("liked");
+                    } else {
+                        icon.removeClass("liked").addClass("unliked");
+                    }
+                },
+                error: function () {
+                    alert("Something went wrong. Please try again.");
+                }
+            });
+        });
+    });
+</script>

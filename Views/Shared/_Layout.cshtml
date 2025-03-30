@@ -31,9 +31,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark header-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark header-text" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
-                        </li>
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
@@ -49,6 +46,7 @@
                                     Dictionary
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
                                     <a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a>
                                     <a class="dropdown-item" asp-controller="Colors" asp-action="Index">Colors</a>
                                     <a class="dropdown-item" asp-controller="Engines" asp-action="Index">Engines</a>

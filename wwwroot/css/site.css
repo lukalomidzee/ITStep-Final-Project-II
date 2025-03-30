@@ -55,6 +55,21 @@ html {
     #CarImages {
         margin-bottom: 1rem;
     }
+
+    .car-details{
+        flex-direction: column-reverse !important;
+        align-items: flex-start !important;
+        /*width: 100% !important;*/
+    }
+    
+    .car-photos {
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+
+    .car-card {
+        width: 100% !important;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -244,4 +259,25 @@ form.form-control {
 
 .unliked {
     color: gray;
+}
+
+.car-details {
+/*    width: 45%;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.car-photos{
+    height: 23rem !important;
+    width: 45%;
+}
+
+.carousel-inner-detailed {
+    height: 100% !important;
+}
+
+.car-info {
+    width: 45%;
 }
