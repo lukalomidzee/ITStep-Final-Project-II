@@ -52,6 +52,13 @@
                     <p class="info car-card-info-price">Price: @car.Price GEL/Day</p>
                     <div class="card-buttons">
                         <a class="info car-card-info-link btn btn-blue" href="@Url.Action("Details", "Car", new { id = car.Id })">Details</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <i class="fas fa-heart @(ViewBag.LikedCarsIds.Contains(car.Id) ? "liked" : "unliked")"
+                               data-car-id="@car.Id"
+                               style="cursor:pointer; font-size: 24px;">
+                            </i>
+                        }
                     </div>
 
                 </div>
@@ -60,6 +67,7 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         
@@ -67,6 +75,29 @@
         carousels.forEach(function (carousel) {
             var bsCarousel = new bootstrap.Carousel(carousel, {
                 ride: false
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $(".fa-heart").click(function () {
+            var icon = $(this);
+            var carId = icon.data("car-id");
+
+            $.ajax({
+                url: '/Cars/ToggleLike',
+                type: 'POST',
+                data: { carId: carId },
+                success: function (response) {
+                    if (response.liked) {
+                        icon.removeClass("unliked").addClass("liked");
+                    } else {
+                        icon.removeClass("liked").addClass("unliked");
+                    }
+                },
+                error: function () {
+                    alert("Something went wrong. Please try again.");
+                }
             });
         });
     });

@@ -22,6 +22,5 @@ namespace CarRentalApplication.Models.VMs.Cars
         public int LikeCount { get; set; }
         public int Status { get; set; }
         public List<string> ImageUrls { get; set; }
-
     }
 }

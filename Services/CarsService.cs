@@ -95,6 +95,20 @@ namespace CarRentalApplication.Services
         #endregion
 
         #region Car list
+        
+        public async Task<ServiceResponse<Car>> GetCarById(int carId)
+        {
+            var car = await _context.Cars.Where(c => c.Id == carId).Include(c => c.CarImages).Include(c => c.UsersCarsLikes).FirstOrDefaultAsync();
+            try
+            {
+                return new ServiceResponse<Car> { Data = car, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<Car> { Data = null, Success = false, Message = ex.Message };
+            }
+        }
+
         public async Task<ServiceResponse<List<Car>>> GetCarsList()
         {
             var cars = await _context.Cars.Where(c => c.Status == 1).Include(c => c.CarImages).ToListAsync();
@@ -146,6 +160,8 @@ namespace CarRentalApplication.Services
                 return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = ex.Message };
             }
         }
+
+
 
         #endregion
 

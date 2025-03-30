@@ -149,7 +149,7 @@ form.form-control {
 }
 
 #home-main {
-    margin-top: 8rem;
+    margin-top: 4rem;
     width: 100%;
     align-self: start;
 }
@@ -187,10 +187,11 @@ form.form-control {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
+    /*gap: 1rem;*/
     padding: 1rem;
     border: 1px solid #0077B6;
     border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 
 .info {
@@ -235,4 +236,12 @@ form.form-control {
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
+}
+
+.liked {
+    color: red;
+}
+
+.unliked {
+    color: gray;
 }

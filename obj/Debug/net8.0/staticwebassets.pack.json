@@ -29,12 +29,24 @@
       "PackagePath": "staticwebassets\\images\\cars\\3bb88074-e47b-459a-8231-39cc82c6cb64.jpg"
     },
     {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\3f0e502f-365b-4884-9232-eb269b163056.jpg",
+      "PackagePath": "staticwebassets\\images\\cars\\3f0e502f-365b-4884-9232-eb269b163056.jpg"
+    },
+    {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\473524f7-2814-4d39-9840-0e1c84d1ac89.jpg",
+      "PackagePath": "staticwebassets\\images\\cars\\473524f7-2814-4d39-9840-0e1c84d1ac89.jpg"
+    },
+    {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\6096caef-91c3-42b9-80dd-6f61062be804.jpg",
       "PackagePath": "staticwebassets\\images\\cars\\6096caef-91c3-42b9-80dd-6f61062be804.jpg"
     },
     {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\68873e9b-4179-4f16-bd77-8ae90844c639.jpg",
       "PackagePath": "staticwebassets\\images\\cars\\68873e9b-4179-4f16-bd77-8ae90844c639.jpg"
+    },
+    {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\fbad05ed-fad8-400e-8b27-87595465f493.jpeg",
+      "PackagePath": "staticwebassets\\images\\cars\\fbad05ed-fad8-400e-8b27-87595465f493.jpeg"
     },
     {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\login.jpg",

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
     <header>
@@ -33,17 +35,6 @@
                             <a class="nav-link text-dark header-text" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
                         </li>
                     </ul>
-                    @* <ul>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark header-text" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark header-text" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark header-text" asp-area="" asp-controller="Rentals" asp-action="Index">Rentals</a>
-                        </li>
-                    </ul> *@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {

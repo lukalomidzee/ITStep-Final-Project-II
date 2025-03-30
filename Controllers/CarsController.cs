@@ -12,13 +12,15 @@ namespace CarRentalApplication.Controllers
 {
     public class CarsController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly ICarsService _carsService;
         private readonly ISelectorsService _selectorsService;
 
-        public CarsController(ICarsService carsService, ISelectorsService selectorsService)
+        public CarsController(ICarsService carsService, ISelectorsService selectorsService, ApplicationDbContext context)
         {
             _carsService = carsService;
             _selectorsService = selectorsService;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -35,11 +37,11 @@ namespace CarRentalApplication.Controllers
             {
                 Cities = selectorData[0],
                 Colors = selectorData[1],
-                Engines = selectorData[2], 
-                FuelCapacities = selectorData[3], 
+                Engines = selectorData[2],
+                FuelCapacities = selectorData[3],
                 Gearboxes = selectorData[4],
                 Seats = selectorData[5],
-                Years = selectorData[6] 
+                Years = selectorData[6]
             };
             ViewBag.Brands = brands.Data;
             ViewBag.Selectors = selectors;
@@ -58,7 +60,7 @@ namespace CarRentalApplication.Controllers
         public async Task<IActionResult> AddCarPost([FromForm] CreateCarViewModel carModel, List<IFormFile> CarImages)
         {
             var modelState = ModelState;
-            
+
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
@@ -113,9 +115,47 @@ namespace CarRentalApplication.Controllers
                 TempData["Error"] = result.Message;
             }
             return RedirectToAction("AddCar");
-            
+
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> ToggleLike(int carId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Json(new { success = false, message = "User is not authenticated" });
+            }
+
+            var carExists = await _context.Cars.AnyAsync(c => c.Id == carId);
+            if (!carExists)
+            {
+                return Json(new { success = false, message = "Car not found" });
+            }
+
+            var userLike = await _context.UsersCarsLikes
+                .FirstOrDefaultAsync(ul => ul.UserId == userId && ul.CarId == carId);
+
+            bool liked;
+
+            if (userLike == null)
+            {
+                await _context.UsersCarsLikes.AddAsync(new UsersCarsLikes
+                {
+                    UserId = userId,
+                    CarId = carId
+                });
+                liked = true;
+            }
+            else
+            {
+                _context.UsersCarsLikes.Remove(userLike);
+                liked = false;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true, liked });
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace CarRentalApplication.Interfaces
 
         Task<ServiceResponse<bool>> DeleteCar(int carId);
 
+        Task<ServiceResponse<Car>> GetCarById(int carId);
         Task<ServiceResponse<List<Car>>> GetCarsList();
 
         Task<ServiceResponse<List<Car>>> GetCarsListLimited(int carCount);
