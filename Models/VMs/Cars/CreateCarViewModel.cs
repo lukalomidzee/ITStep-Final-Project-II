@@ -45,8 +45,8 @@ namespace CarRentalApplication.Models.VMs.Cars
         [Required]
         public decimal Price { get; set; }
 
-        [Required]
-        public string ImagePath { get; set; }
+        //[Required]
+        //public string ImagePath { get; set; }
 
         public ICollection<CarImage> CarImages { get; set; } = new List<CarImage>();
 

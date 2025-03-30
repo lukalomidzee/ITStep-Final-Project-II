@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\0f09d023-3681-47e9-bfb5-83fe3b6d2123.jpg",
+      "PackagePath": "staticwebassets\\images\\cars\\0f09d023-3681-47e9-bfb5-83fe3b6d2123.jpg"
+    },
+    {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\4fd39693-7043-4183-9491-dace92840235.jpg",
+      "PackagePath": "staticwebassets\\images\\cars\\4fd39693-7043-4183-9491-dace92840235.jpg"
+    },
+    {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\a8bacb5f-46a1-40ac-aac2-b903279316f5.jpg",
+      "PackagePath": "staticwebassets\\images\\cars\\a8bacb5f-46a1-40ac-aac2-b903279316f5.jpg"
+    },
+    {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\login.jpg",
       "PackagePath": "staticwebassets\\img\\login.jpg"
     },

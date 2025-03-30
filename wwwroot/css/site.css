@@ -34,6 +34,21 @@ html {
     .form-field {
         width: 50% !important;
     }
+
+    #create-car-form {
+        flex-direction: column-reverse !important;
+    }
+
+    .values-div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    #CarImages {
+        margin-bottom: 1rem;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -76,6 +91,11 @@ body {
 
 .img-div {
     width: 50%;
+}
+
+.map-div {
+    width: 60%;
+    height: 80%;
 }
 
 form.form-control {
@@ -158,4 +178,13 @@ form.form-control {
 
 .info {
     margin: 0;
+}
+
+
+#create-car-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
