@@ -1,53 +1,71 @@
 ﻿@model List<CarRentalApplication.Models.Entities.Cars.Car>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Vehicle Finder";
 }
 
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["Error"]
+<div id="finder-main">
+    <div id="finder-filter">
+        <form id="filter-form" asp-controller="VehicleFinder" asp-action="Filter">
+            <div class="form-group form-field filter-select">
+                <label>Year</label>
+                <br />
+                <select name="year" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select year</option>
+                    @foreach (var select in ViewBag.Selectors.Years)
+                    {
+                        <option value="@select.Text" >@select.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group form-field filter-select">
+                <label>Seats</label>
+                <br />
+                <select name="seats" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select seats amount</option>
+                    @foreach (var select in ViewBag.Selectors.Seats)
+                    {
+                        <option value="@select.Text">@select.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group form-field filter-select">
+                <label>City</label>
+                <br />
+                <select name="cityName" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select city</option>
+                    @foreach (var select in ViewBag.Selectors.Cities)
+                    {
+                        <option value="@select.Text" >@select.Text</option>
+                    }
+                </select>
+            </div>
+
+            <br />
+
+            <div class="form-group form-field">
+                <button class="btn btn-blue">Search</button>
+            </div>
+        </form>
     </div>
-}
-
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Success"]
-    </div>
-}
-
-
-<div id="home-main">
-    <h1 class="main-heading">
-        Rent your desired car<br />
-        at the lowest prices!
-    </h1>
-
-    <br />
-
-    <h3 class="main-heading" style="font-size:2rem; text-align:center;">
-        See our popular cars below
-    </h3>
-
-    <div class="cars-cards-div">
-        @if (Model.Count < 1)
+    <div id="finder-list">
+        @if (Model.Count == 0)
         {
-            <div class="alert alert-danger" style="width: 100%">
-                Car list is empty!
+            <div style="width: 100%" class="alert alert-danger">
+                <p style="margin: 0 !important">No cars found</p>
             </div>
         }
-
         @foreach (var car in Model)
         {
             <div class="car-card">
                 @* <div class="car-card-image">
-                    @foreach (var image in car.CarImages)
-                    {
-                        <img src="@image.ImagePath" alt="@car.Model" class="car-image"/>
-                    }
-                </div> *@
+            @foreach (var image in car.CarImages)
+            {
+            <img src="@image.ImagePath" alt="@car.Model" class="car-image"/>
+            }
+            </div> *@
                 <div class="car-card-info">
                     <div id="carousel-@car.Id" class="carousel slide">
                         <div class="carousel-inner">
@@ -88,14 +106,30 @@
     </div>
 </div>
 
-<div style="width:100%; display:flex; align-items:center; justify-content:center">
-    <a class="btn btn-blue" style="width:15rem; height:3rem; text-align:center; align-content:center; margin-top:1rem" asp-controller="VehicleFinder" asp-action="Index">View all cars</a>
+<div class="pagination">
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Index", new { year = Context.Request.Query["year"], seats = Context.Request.Query["seats"], cityName = Context.Request.Query["cityName"], pageNumber = ViewBag.CurrentPage - 1 })" class="btn btn-primary">Previous</a>
+    }
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <a href="@Url.Action("Index", new { year = Context.Request.Query["year"], seats = Context.Request.Query["seats"], cityName = Context.Request.Query["cityName"], pageNumber = i })"
+           class="btn @(i == ViewBag.CurrentPage ? "btn-success" : "btn-outline-primary")">
+            @i
+        </a>
+    }
+
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { year = Context.Request.Query["year"], seats = Context.Request.Query["seats"], cityName = Context.Request.Query["cityName"], pageNumber = ViewBag.CurrentPage + 1 })" class="btn btn-primary">Next</a>
+    }
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        
+
         var carousels = document.querySelectorAll('.carousel');
         carousels.forEach(function (carousel) {
             var bsCarousel = new bootstrap.Carousel(carousel, {
