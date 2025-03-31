@@ -99,6 +99,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<Car>> GetCarById(int carId)
         {
             var car = await _context.Cars.Where(c => c.Id == carId).Include(c => c.CarImages).Include(c => c.UsersCarsLikes).FirstOrDefaultAsync();
+            if (car == null)
+            {
+                return new ServiceResponse<Car> { Data = null, Success = false, Message = "Car not found" };
+            }
             try
             {
                 return new ServiceResponse<Car> { Data = car, Success = true };
@@ -112,6 +116,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<List<Car>>> GetCarsList()
         {
             var cars = await _context.Cars.Where(c => c.Status == 1).Include(c => c.CarImages).ToListAsync();
+            if (cars == null)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = "Cars not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -125,6 +133,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<List<Car>>> GetCarsListLimited(int carCount)
         {
             var cars = await _context.Cars.Where(c => c.Status == 1).Include(c => c.CarImages).Take(carCount).ToListAsync();
+            if (cars == null)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = "Cars not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -138,6 +150,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<List<Car>>> GetCarsListByUser(string userId)
         {
             var cars = await _context.Cars.Where(c => c.Status == 1 && c.CreatorUserId == userId).Include(c => c.CarImages).ToListAsync();
+            if (cars == null)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = "Cars not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -153,6 +169,10 @@ namespace CarRentalApplication.Services
             var cars = await _context.Cars.Where(c => c.Status == 1)
                 .Include(c => c.CarImages).OrderByDescending(c => c.LikeCount)
                 .ThenByDescending(c => c.RentCount).Take(carCount).ToListAsync();
+            if (cars == null)
+            {
+                return new ServiceResponse<List<Car>> { Data = null, Success = false, Message = "Cars not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Car>> { Data = cars, Success = true };
@@ -172,6 +192,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<List<Brand>>> GetBrands()
         {
             var brands = await _context.Brands.OrderBy(b => b.Name).ToListAsync();
+            if (brands == null)
+            {
+                return new ServiceResponse<List<Brand>> { Data = null, Success = false, Message = "Brands not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Brand>> { Data = brands, Success = true };
@@ -185,6 +209,10 @@ namespace CarRentalApplication.Services
         public async Task<ServiceResponse<List<Model>>> GetModelsByBrand(int brandId)
         {
             var models = await _context.Models.Where(m => m.BrandId == brandId).OrderBy(m => m.Name).ToListAsync();
+            if (models == null)
+            {
+                return new ServiceResponse<List<Model>> { Data = null, Success = false, Message = "Models not found" };
+            }
             try
             {
                 return new ServiceResponse<List<Model>> { Data = models, Success = true };

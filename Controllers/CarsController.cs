@@ -166,12 +166,13 @@ namespace CarRentalApplication.Controllers
         [HttpGet("/Cars/Details/{carId}")]
         public async Task<IActionResult> Details(int carId)
         {
+
             var result = await _carsService.GetCarById(carId);
 
             if (!result.Success)
             {
                 TempData["Error"] = result.Message;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<int> likedCars = await _context.UsersCarsLikes.Where(ucl => ucl.UserId == userId).Select(ucl => ucl.CarId).ToListAsync();
