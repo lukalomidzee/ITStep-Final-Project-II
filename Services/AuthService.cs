@@ -10,9 +10,11 @@ namespace CarRentalApplication.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        //private readonly RoleManager<User> _roleManager;
         
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager /*RoleManager<User> roleManager*/)
         {
+            //_roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -41,14 +43,24 @@ namespace CarRentalApplication.Services
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                // Assign the default "user" role
-                await _userManager.AddToRoleAsync(user, "user");
+                //if (!await _roleManager.RoleExistsAsync("user"))
+                //{
+                //    await _roleManager.CreateAsync(new IdentityRole("user"));
+                //}
+
+                var roleResult = await _userManager.AddToRoleAsync(user, "user");
+
+                if (!roleResult.Succeeded)
+                {
+                    foreach (var error in roleResult.Errors)
+                    {
+                        Console.WriteLine($"Role Assignment Error: {error.Description}");
+                    }
+                }
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
-
             }
 
-            //await _userManager.AddToRoleAsync(user, "user");
             return result;
         }
     }
