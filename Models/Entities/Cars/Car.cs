@@ -52,11 +52,7 @@ namespace CarRentalApplication.Models.Entities.Cars
         [MinLength(9), MaxLength(9)]
         public required string CreatorPhoneNummber { get; set; }
 
-        //public List<User> UserWhoRented { get; set; } = new List<User>();
-
         public List<Rent> Rentals { get; set; } = new List<Rent>();
-
-        //public List<User> UsersWhoLiked { get; set; } = new List<User>();
 
         public List<UsersCarsLikes> UsersCarsLikes { get; set; } = new List<UsersCarsLikes>();
 
