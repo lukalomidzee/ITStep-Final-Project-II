@@ -1,9 +1,11 @@
 ﻿using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models.VMs.Selectors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalApplication.Controllers
 {
+    [Authorize(Roles = "admin")]
     public abstract class GenericSelectorController<T, TValue> : Controller
     where T : class, ISelector<TValue>, new()
     {

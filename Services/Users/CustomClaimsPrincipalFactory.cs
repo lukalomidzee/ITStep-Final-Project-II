@@ -13,6 +13,11 @@ namespace CarRentalApplication.Services.Users
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(User user)
         {
             var identity = await base.GenerateClaimsAsync(user);
+            var roles = await UserManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
             identity.AddClaim(new Claim("FirstName", user.FirstName ?? ""));
             identity.AddClaim(new Claim("LastName", user.LastName ?? ""));
             identity.AddClaim(new Claim("MobilePhone", user.PhoneNumber ?? ""));

@@ -1,9 +1,11 @@
 ﻿using CarRentalApplication.Models.Entities.Dictionary;
 using CarRentalApplication.Services.Selectors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalApplication.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class SeatsController : GenericSelectorController<Seats, int>
     {
         public SeatsController(SeatsService service) : base(service) { }

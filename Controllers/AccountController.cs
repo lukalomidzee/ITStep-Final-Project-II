@@ -41,5 +41,10 @@ namespace CarRentalApplication.Controllers
 
             return View(user);
         }
+
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View();
+        }
     }
 }

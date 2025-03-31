@@ -3,6 +3,7 @@ using CarRentalApplication.Models;
 using CarRentalApplication.Models.Entities.Cars;
 using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Models.VMs.Cars;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

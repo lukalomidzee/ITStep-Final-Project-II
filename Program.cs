@@ -5,6 +5,7 @@ using CarRentalApplication.Models.Entities.Users;
 using CarRentalApplication.Services;
 using CarRentalApplication.Services.Selectors;
 using CarRentalApplication.Services.Users;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -41,6 +42,14 @@ namespace CarRentalApplication
             builder.Services.AddScoped<SeatsService>();
             builder.Services.AddScoped<YearsService>();
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Auth/Login";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                });
+
+
 
             var app = builder.Build();
 
@@ -51,6 +60,7 @@ namespace CarRentalApplication
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithReExecute("/Home/NotFound");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

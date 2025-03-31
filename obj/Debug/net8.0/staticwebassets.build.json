@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bzfAiNq5JPhKMXsRzk6Z5SgGRXfpO+BTVy2ggLIGiYE=",
+  "Hash": "AzMxxhxJWP7Y8P/5ngRPvySgXw9RigsK0bHTMlT2KUw=",
   "Source": "CarRentalApplication",
   "BasePath": "_content/CarRentalApplication",
   "Mode": "Default",
@@ -454,6 +454,25 @@
       "OriginalItemSpec": "wwwroot\\img\\login.jpg"
     },
     {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\notfound.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "img/notfound.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\notfound.jpg"
+    },
+    {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\register.jpg",
       "SourceId": "CarRentalApplication",
       "SourceType": "Discovered",
@@ -471,6 +490,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\register.jpg"
+    },
+    {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\unauthorized.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "img/unauthorized.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\unauthorized.jpg"
     },
     {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\js\\site.js",

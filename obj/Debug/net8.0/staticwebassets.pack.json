@@ -89,8 +89,16 @@
       "PackagePath": "staticwebassets\\img\\login.jpg"
     },
     {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\notfound.jpg",
+      "PackagePath": "staticwebassets\\img\\notfound.jpg"
+    },
+    {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\register.jpg",
       "PackagePath": "staticwebassets\\img\\register.jpg"
+    },
+    {
+      "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\img\\unauthorized.jpg",
+      "PackagePath": "staticwebassets\\img\\unauthorized.jpg"
     },
     {
       "Id": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\js\\site.js",

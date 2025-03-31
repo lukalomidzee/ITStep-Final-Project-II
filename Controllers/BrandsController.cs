@@ -1,10 +1,13 @@
 ﻿using CarRentalApplication.Interfaces;
 using CarRentalApplication.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarRentalApplication.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class BrandsController : Controller
     {
         private readonly ApplicationDbContext _context;

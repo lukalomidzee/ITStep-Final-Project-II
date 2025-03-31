@@ -1,9 +1,11 @@
 ﻿using CarRentalApplication.Models.Entities.Dictionary;
 using CarRentalApplication.Services.Selectors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalApplication.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ColorsController : GenericSelectorController<Colors, string>
     {
         public ColorsController(ColorsService service) : base(service) { }

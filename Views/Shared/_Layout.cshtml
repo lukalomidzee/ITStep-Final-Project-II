@@ -44,21 +44,24 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark header-text" asp-controller="Cars" asp-action="AddCar">Add Car</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link header-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dictionary
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
-                                    <a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a>
-                                    <a class="dropdown-item" asp-controller="Colors" asp-action="Index">Colors</a>
-                                    <a class="dropdown-item" asp-controller="Engines" asp-action="Index">Engines</a>
-                                    <a class="dropdown-item" asp-controller="FuelCapacities" asp-action="Index">Fuel Capacities</a>
-                                    <a class="dropdown-item" asp-controller="Gearboxes" asp-action="Index">Gearboxes</a>
-                                    <a class="dropdown-item" asp-controller="Seats" asp-action="Index">Seats</a>
-                                    <a class="dropdown-item" asp-controller="Years" asp-action="Index">Years</a>
-                                </div>
-                            </li>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link header-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dictionary
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
+                                        <a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a>
+                                        <a class="dropdown-item" asp-controller="Colors" asp-action="Index">Colors</a>
+                                        <a class="dropdown-item" asp-controller="Engines" asp-action="Index">Engines</a>
+                                        <a class="dropdown-item" asp-controller="FuelCapacities" asp-action="Index">Fuel Capacities</a>
+                                        <a class="dropdown-item" asp-controller="Gearboxes" asp-action="Index">Gearboxes</a>
+                                        <a class="dropdown-item" asp-controller="Seats" asp-action="Index">Seats</a>
+                                        <a class="dropdown-item" asp-controller="Years" asp-action="Index">Years</a>
+                                    </div>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark header-text" asp-controller="Account" asp-action="Index"><i class="fas fa-user-circle"></i></a>
                             </li>

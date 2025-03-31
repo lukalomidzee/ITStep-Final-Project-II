@@ -38,8 +38,18 @@ namespace CarRentalApplication.Services
                 PhoneNumber = model.PhoneNumber,
             };
 
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                // Assign the default "user" role
+                await _userManager.AddToRoleAsync(user, "user");
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+            }
+
             //await _userManager.AddToRoleAsync(user, "user");
-            return await _userManager.CreateAsync(user, model.Password);
+            return result;
         }
     }
 }
