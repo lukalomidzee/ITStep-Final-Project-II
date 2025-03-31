@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AzMxxhxJWP7Y8P/5ngRPvySgXw9RigsK0bHTMlT2KUw=",
+  "Hash": "SLl0/MAWmKf84L0xgr483h3kVS3u8v7rwITIvk5Z3/4=",
   "Source": "CarRentalApplication",
   "BasePath": "_content/CarRentalApplication",
   "Mode": "Default",
@@ -321,6 +321,25 @@
       "OriginalItemSpec": "wwwroot\\images\\cars\\68873e9b-4179-4f16-bd77-8ae90844c639.jpg"
     },
     {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\6d4e99b9-4024-4ef7-9c11-2ce4d2405746.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "images/cars/6d4e99b9-4024-4ef7-9c11-2ce4d2405746.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cars\\6d4e99b9-4024-4ef7-9c11-2ce4d2405746.jpg"
+    },
+    {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\72c92aa9-8d3f-405a-89bf-c3ccf866705a.jpg",
       "SourceId": "CarRentalApplication",
       "SourceType": "Discovered",
@@ -340,6 +359,25 @@
       "OriginalItemSpec": "wwwroot\\images\\cars\\72c92aa9-8d3f-405a-89bf-c3ccf866705a.jpg"
     },
     {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\9765ec7f-b82e-417f-8b17-a316125f41cb.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "images/cars/9765ec7f-b82e-417f-8b17-a316125f41cb.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cars\\9765ec7f-b82e-417f-8b17-a316125f41cb.jpg"
+    },
+    {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\9b39236d-1699-4705-b5d4-a9c632ea75d4.webp",
       "SourceId": "CarRentalApplication",
       "SourceType": "Discovered",
@@ -357,6 +395,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\cars\\9b39236d-1699-4705-b5d4-a9c632ea75d4.webp"
+    },
+    {
+      "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\9e4e9a2e-3a46-4a8f-8e18-92dc9b0c0807.jpg",
+      "SourceId": "CarRentalApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\",
+      "BasePath": "_content/CarRentalApplication",
+      "RelativePath": "images/cars/9e4e9a2e-3a46-4a8f-8e18-92dc9b0c0807.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cars\\9e4e9a2e-3a46-4a8f-8e18-92dc9b0c0807.jpg"
     },
     {
       "Identity": "D:\\ITStep\\II Semester\\Final Project\\CarRentalApplication\\wwwroot\\images\\cars\\a82bc775-07ca-4093-83d5-eaa431b3f581.jpeg",

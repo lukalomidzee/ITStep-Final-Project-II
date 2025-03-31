@@ -39,6 +39,7 @@ namespace CarRentalApplication.Controllers
                 return NotFound();
             }
 
+            user.PostedCar = user.PostedCar.Where(pc => pc.Status == 1).ToList();
             return View(user);
         }
 

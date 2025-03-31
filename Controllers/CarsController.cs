@@ -242,5 +242,37 @@ namespace CarRentalApplication.Controllers
             TempData["Success"] = "Car rented successfully";
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCar(int carId)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                TempData["Error"] = "User is not authenticated";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            var car = await _context.Cars.FirstOrDefaultAsync(c => c.Id == carId);
+
+            if (car == null)
+            {
+                TempData["Error"] = "Car not found";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            if (car.CreatorUserId != userId)
+            {
+                TempData["Error"] = "This car doesn't belong to your user";
+                return RedirectToAction("Details", "Cars", new { id = carId });
+            }
+
+            car.Status = 0;
+
+            TempData["Success"] = "Car deleted successfully";
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
